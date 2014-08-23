@@ -556,6 +556,7 @@ GameObject:
   - 20: {fileID: 682229425}
   - 124: {fileID: 682229424}
   - 92: {fileID: 682229423}
+  - 45: {fileID: 682229426}
   m_Layer: 0
   m_Name: PortalCamera
   m_TagString: Untagged
@@ -621,6 +622,14 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+--- !u!45 &682229426
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 682229421}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: a2126534b3a11b34e977105bd9e3cc03, type: 2}
 --- !u!1 &751819523
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,6 +750,7 @@ GameObject:
   - 20: {fileID: 905374472}
   - 124: {fileID: 905374471}
   - 92: {fileID: 905374470}
+  - 45: {fileID: 905374473}
   m_Layer: 0
   m_Name: PortalCamera
   m_TagString: Untagged
@@ -806,6 +816,14 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+--- !u!45 &905374473
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 905374468}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: a2126534b3a11b34e977105bd9e3cc03, type: 2}
 --- !u!1 &955440259
 GameObject:
   m_ObjectHideFlags: 0

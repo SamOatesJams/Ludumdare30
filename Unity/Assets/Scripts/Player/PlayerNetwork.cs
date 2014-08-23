@@ -23,7 +23,7 @@ public class PlayerNetwork : MonoBehaviour
     public bool HasShot { get; set; }
     public int SideShot { get; set; }
 
-    void Start()
+    void Awake()
     {
         m_photon = this.GetComponent<PhotonView>();
         m_turret = this.transform.FindChild("SK_RobotDude/SM_Turret");
