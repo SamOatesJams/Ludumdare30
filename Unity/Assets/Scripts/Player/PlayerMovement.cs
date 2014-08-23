@@ -50,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        this.transform.Rotate(Vector3.up, m_movement.DeltaRotation);
+
         var forward = this.transform.forward;
         m_body.AddForce(forward * m_movement.DeltaSpeed * this.Speed);
     }
