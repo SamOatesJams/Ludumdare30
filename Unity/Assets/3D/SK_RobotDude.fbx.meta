@@ -4,10 +4,100 @@ ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: polySurface17
+    100004: SM_Guns
+    100006: SM_L_Cog1
+    100008: SM_L_Cog2
+    100010: SM_L_LargeCog
+    100012: SM_L_Treads
+    100014: SM_L_WheelSmall1
+    100016: SM_L_WheelSmall2
+    100018: SM_L_WheelSmall3
+    100020: SM_R_Cog1
+    100022: SM_R_Cog2
+    100024: SM_R_LargeCog
+    100026: SM_R_Treads
+    100028: SM_R_WheelSmall1
+    100030: SM_R_WheelSmall2
+    100032: SM_R_WheelSmall3
+    100034: SM_RobotBody
+    100036: SM_Turret
     400000: //RootNode
+    400002: polySurface17
+    400004: SM_Guns
+    400006: SM_L_Cog1
+    400008: SM_L_Cog2
+    400010: SM_L_LargeCog
+    400012: SM_L_Treads
+    400014: SM_L_WheelSmall1
+    400016: SM_L_WheelSmall2
+    400018: SM_L_WheelSmall3
+    400020: SM_R_Cog1
+    400022: SM_R_Cog2
+    400024: SM_R_LargeCog
+    400026: SM_R_Treads
+    400028: SM_R_WheelSmall1
+    400030: SM_R_WheelSmall2
+    400032: SM_R_WheelSmall3
+    400034: SM_RobotBody
+    400036: SM_Turret
     2300000: //RootNode
+    2300002: polySurface17
+    2300004: SM_Guns
+    2300006: SM_L_Cog1
+    2300008: SM_L_Cog2
+    2300010: SM_L_LargeCog
+    2300012: SM_L_Treads
+    2300014: SM_L_WheelSmall1
+    2300016: SM_L_WheelSmall2
+    2300018: SM_L_WheelSmall3
+    2300020: SM_R_Cog1
+    2300022: SM_R_Cog2
+    2300024: SM_R_LargeCog
+    2300026: SM_R_Treads
+    2300028: SM_R_WheelSmall1
+    2300030: SM_R_WheelSmall2
+    2300032: SM_R_WheelSmall3
+    2300034: SM_RobotBody
+    2300036: SM_Turret
     3300000: //RootNode
+    3300002: polySurface17
+    3300004: SM_Guns
+    3300006: SM_L_Cog1
+    3300008: SM_L_Cog2
+    3300010: SM_L_LargeCog
+    3300012: SM_L_Treads
+    3300014: SM_L_WheelSmall1
+    3300016: SM_L_WheelSmall2
+    3300018: SM_L_WheelSmall3
+    3300020: SM_R_Cog1
+    3300022: SM_R_Cog2
+    3300024: SM_R_LargeCog
+    3300026: SM_R_Treads
+    3300028: SM_R_WheelSmall1
+    3300030: SM_R_WheelSmall2
+    3300032: SM_R_WheelSmall3
+    3300034: SM_RobotBody
+    3300036: SM_Turret
     4300000: SK_RobotDude
+    4300002: SM_L_Treads
+    4300004: SM_L_Cog2
+    4300006: SM_L_Cog1
+    4300008: SM_L_WheelSmall2
+    4300010: SM_L_WheelSmall3
+    4300012: SM_L_WheelSmall1
+    4300014: SM_L_LargeCog
+    4300016: SM_R_Treads
+    4300018: SM_R_Cog2
+    4300020: SM_R_Cog1
+    4300022: SM_R_WheelSmall2
+    4300024: SM_R_WheelSmall3
+    4300026: SM_R_WheelSmall1
+    4300028: SM_R_LargeCog
+    4300030: SM_Turret
+    4300032: SM_Guns
+    4300034: polySurface17
+    4300036: SM_RobotBody
     9500000: //RootNode
   materials:
     importMaterials: 1
