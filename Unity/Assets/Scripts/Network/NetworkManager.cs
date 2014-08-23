@@ -45,8 +45,8 @@ public class NetworkManager : MonoBehaviour {
 
     public void OnJoinedRoom()
     {
-        Debug.Log("OnJoinedRoom()");
-        var player = PhotonNetwork.Instantiate("Player", new Vector3(0,0,0), Quaternion.identity, 0);
+        var spawn = SpawnManager.Instance.GetSpawm((Team)Random.Range(0, 1));                
+        var player = PhotonNetwork.Instantiate("Player", spawn.transform.position, spawn.transform.rotation, 0);
         player.name = "LocalPlayer";
         PhotonNetwork.playerName = "Player-" + (PhotonNetwork.playerList.Length + 1);
 
