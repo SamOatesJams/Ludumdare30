@@ -35,7 +35,7 @@ public class NetworkManager : MonoBehaviour {
         }
 
         var roomOptions = new RoomOptions() { isOpen = true, isVisible = true, maxPlayers = 10 };
-        PhotonNetwork.JoinOrCreateRoom("RobotsTest", roomOptions, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom("RobotsTestv2", roomOptions, TypedLobby.Default);
     }
 
     public virtual void OnFailedToConnectToPhoton(DisconnectCause cause)
