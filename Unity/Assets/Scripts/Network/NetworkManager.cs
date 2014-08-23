@@ -50,7 +50,7 @@ public class NetworkManager : MonoBehaviour {
         player.name = "LocalPlayer";
         PhotonNetwork.playerName = "Player-" + (PhotonNetwork.playerList.Length + 1);
 
-        var camera = player.transform.Find("Camera").gameObject;
+        var camera = player.transform.Find("SK_RobotDude/SM_Turret/Camera").gameObject;
         camera.SetActive(true);
 
         var collider = player.GetComponent<Collider>();
