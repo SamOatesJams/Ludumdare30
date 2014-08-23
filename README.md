@@ -9,6 +9,17 @@ The event attracts developers from all sides of the industry. Students, hobbyist
 
 For many people, it can be difficult to find or make the time create a game or prototype for yourself. We’re here to be your excuse.
 
+Idea
+---------
+
+ * Online multiplayer.
+ * 4 vs 4 Matches.
+ * Players play as Robots.
+ * Portals exist allowing the players to teleport between worlds.
+ * On round end all players are teleported to the same random world.
+ * A round ends when one team kills all the other team.
+ * A game ends by winning 3 rounds.
+
 Theme
 ---------
 
