@@ -61,6 +61,9 @@ public class NetworkManager : MonoBehaviour {
 
         var movement = player.GetComponent<PlayerMovement>();
         movement.enabled = true;
+
+        var shoot = player.GetComponent<PlayerShoot>();
+        shoot.enabled = true;
     }
 
     public virtual void OnJoinedLobby()
