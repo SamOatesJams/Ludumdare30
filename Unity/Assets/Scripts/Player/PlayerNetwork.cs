@@ -4,10 +4,14 @@ using System.Collections.Generic;
 
 public class PlayerNetwork : MonoBehaviour 
 {
+    private Transform m_turret;
+
     private Vector3 m_targetPosition = default(Vector3);
     private Quaternion m_targetRotation = default(Quaternion);
+    private Quaternion m_targetTurretRotation = default(Quaternion);
     private Vector3 m_lastPosition = default(Vector3);
     private Quaternion m_lastRotation = default(Quaternion);
+    private Quaternion m_lastTurretRotation = default(Quaternion);
 
     private bool m_hasPosition = false;
 
@@ -22,6 +26,8 @@ public class PlayerNetwork : MonoBehaviour
     void Start()
     {
         m_photon = this.GetComponent<PhotonView>();
+        Transform mesh = this.transform.FindChild("SK_RobotDude");
+        m_turret = mesh.FindChild("SM_Turret");
     }
 
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -31,6 +37,7 @@ public class PlayerNetwork : MonoBehaviour
             //We own this player: send the others our data       
             stream.SendNext(this.transform.position);
             stream.SendNext(this.transform.rotation);
+            stream.SendNext(this.m_turret.transform.rotation);
             stream.SendNext(this.HasTeleported);
             stream.SendNext(this.HasShot);
             stream.SendNext(this.SideShot == 1);
@@ -41,9 +48,10 @@ public class PlayerNetwork : MonoBehaviour
         }   
         else   
         {       
-            //Network player, receive data        
+            //Network player, receive data
             m_targetPosition = (Vector3)stream.ReceiveNext();
             m_targetRotation = (Quaternion)stream.ReceiveNext();
+            m_targetTurretRotation = (Quaternion)stream.ReceiveNext();
             var didPortal = (bool)stream.ReceiveNext();
             HasShot = (bool)stream.ReceiveNext();
             SideShot = (bool)stream.ReceiveNext() ? 1 : 0;
@@ -52,12 +60,14 @@ public class PlayerNetwork : MonoBehaviour
             {
                 m_lastPosition = m_targetPosition;
                 m_lastRotation = m_targetRotation;
+                m_lastTurretRotation = m_targetRotation;
                 m_hasPosition = true;
             }
             else
             {
                 m_lastPosition = this.transform.position;
                 m_lastRotation = this.transform.rotation;
+                m_lastTurretRotation = this.m_turret.transform.rotation;
             }
 
             m_lerpTime = 0.0f;
@@ -72,6 +82,7 @@ public class PlayerNetwork : MonoBehaviour
             m_lerpTime += Time.deltaTime * 9;
             this.transform.position = Vector3.Lerp(m_lastPosition, m_targetPosition, m_lerpTime);
             this.transform.rotation = Quaternion.Lerp(m_lastRotation, m_targetRotation, m_lerpTime);
+            this.m_turret.transform.rotation = Quaternion.Lerp(m_lastTurretRotation, m_targetTurretRotation, m_lerpTime);
 
             PlayerShoot playerShoot = this.GetComponent<PlayerShoot>();
 

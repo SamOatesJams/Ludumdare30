@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         public float DeltaRotation { get; set; }
     }
 
-    struct Weapons
+    public struct Weapons
     {
         public Transform Turret { get; set; }
         public Transform WeaponSystem { get; set; }
@@ -74,10 +74,12 @@ public class PlayerMovement : MonoBehaviour
         Transform robotMesh = this.transform.FindChild("SK_RobotDude");
         Transform weaponsConatainer = this.transform.FindChild("Weapons");
 
-        m_weapons.Turret = robotMesh.transform.FindChild("SM_Turret");
-        m_weapons.WeaponSystem = robotMesh.transform.FindChild("SM_Guns");
-        m_weapons.WeaponLeft = weaponsConatainer.FindChild("WeaponLeft");
-        m_weapons.WeaponRight = weaponsConatainer.FindChild("WeaponRight");
+        Weapons weapons = new Weapons();
+        weapons.Turret = robotMesh.transform.FindChild("SM_Turret");
+        weapons.WeaponSystem = robotMesh.transform.FindChild("SM_Guns");
+        weapons.WeaponLeft = weaponsConatainer.FindChild("WeaponLeft");
+        weapons.WeaponRight = weaponsConatainer.FindChild("WeaponRight");
+        this.m_weapons = weapons;
 	}
 	
 	// Update is called once per frame
