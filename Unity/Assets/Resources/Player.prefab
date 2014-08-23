@@ -1318,7 +1318,7 @@ Renderer:
   m_Materials:
   - {fileID: 2100000, guid: 197a99490102b1d459d170b980bb63e3, type: 2}
   - {fileID: 2100000, guid: cecd04c90db282743a53de0c0ead7c88, type: 2}
-  - {fileID: 2100000, guid: 3bb2b444102e07248a2f084e40a963b5, type: 2}
+  - {fileID: 2100000, guid: cecd04c90db282743a53de0c0ead7c88, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
