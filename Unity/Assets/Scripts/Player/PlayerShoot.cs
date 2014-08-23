@@ -30,7 +30,6 @@ public class PlayerShoot : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        m_controller = InputManager.ActiveDevice;
 	}
 	
 	// Update is called once per frame
@@ -46,6 +45,8 @@ public class PlayerShoot : MonoBehaviour {
 
     void FixedUpdate()
     {
+        m_controller = InputManager.ActiveDevice;
+
         if (m_controller.RightTrigger.Value > 0.5f)
         {
             if (Time.time > m_lastshot + ShootDelay)

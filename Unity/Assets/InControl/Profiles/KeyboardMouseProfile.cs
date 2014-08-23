@@ -35,6 +35,16 @@ public class KeyboardMouseProfile : UnityInputDeviceProfile
               Source = KeyCodeAxis( KeyCode.A, KeyCode.D )
             }
         };
+
+        ButtonMappings = new[]
+        {
+            new InputControlMapping
+            {
+                Handle = "Shoot",
+                Target = InputControlType.RightTrigger,
+                Source = MouseButton0
+            }
+        };
     }
 
 }

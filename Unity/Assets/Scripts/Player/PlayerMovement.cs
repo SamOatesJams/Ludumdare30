@@ -34,13 +34,14 @@ public class PlayerMovement : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-        m_controller = InputManager.ActiveDevice;
         m_body = this.GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
-    {	
+    {
+        m_controller = InputManager.ActiveDevice;
+
         // Left Thumb move player
         m_movement.DeltaSpeed = m_controller.LeftStickY;
         m_movement.DeltaRotation = m_controller.LeftStickX;
