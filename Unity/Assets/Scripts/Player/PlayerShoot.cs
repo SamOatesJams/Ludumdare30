@@ -6,8 +6,6 @@ using InControl;
 public class PlayerShoot : MonoBehaviour {
 
     public float ShootDelay = 100;
-    public GameObject[] Weapons;
-    public Vector3 Position = new Vector3(0, 0, 0);
 
     /// <summary>
     /// The controller for the player
@@ -24,6 +22,11 @@ public class PlayerShoot : MonoBehaviour {
     /// </summary>
     private float m_lastshot = 0L;
 
+    /// <summary>
+    /// Side to shoot from. 0 is left, 1 is right
+    /// </summary>
+    private int m_side = 0;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -37,6 +40,7 @@ public class PlayerShoot : MonoBehaviour {
         {
             SetEmmiting(false);
             m_shooting = false;
+            m_side = (m_side == 0 ? 1 : 0);
         }
 	}
 
@@ -58,8 +62,9 @@ public class PlayerShoot : MonoBehaviour {
     void SetEmmiting(bool emitting)
     {
         Transform weapons = this.transform.FindChild("Weapons");
+        Transform weaponSide = weapons.FindChild("Weapon" + (m_side == 0 ? "Left" : "Right"));
 
-        foreach (Transform child in weapons)
+        foreach (Transform child in weaponSide)
         {
             ParticleEmitter script = child.GetComponent<ParticleEmitter>();
             if (script != null)
