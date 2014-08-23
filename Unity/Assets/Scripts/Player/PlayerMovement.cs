@@ -50,6 +50,12 @@ public class PlayerMovement : MonoBehaviour
     private float m_deltaTurretRotation = 0f;
 
     /// <summary>
+    /// List of all cos used on the treads
+    /// </summary>
+    public GameObject[] LeftCogs = null;
+    public GameObject[] RightsCogs = null;
+
+    /// <summary>
     /// 
     /// </summary>
     private Rigidbody m_body = null;
@@ -84,9 +90,21 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         this.transform.Rotate(Vector3.up, m_movement.DeltaRotation);
-        
-        var forward = this.transform.forward;
-        m_body.AddForce(forward * m_movement.DeltaSpeed * this.Speed);
+        m_body.AddForce(this.transform.forward * m_movement.DeltaSpeed * this.Speed);
+
+        bool isTurningLeft = m_movement.DeltaRotation < 0.0f;
+
+        foreach (var cog in this.LeftCogs)
+        {
+            var rotAmount = m_movement.DeltaSpeed + (isTurningLeft ? -m_movement.DeltaRotation : m_movement.DeltaRotation);
+            cog.transform.Rotate(Vector3.right, rotAmount);
+        }
+
+        foreach (var cog in this.RightsCogs)
+        {
+            var rotAmount = m_movement.DeltaSpeed + (isTurningLeft ? m_movement.DeltaRotation : -m_movement.DeltaRotation);
+            cog.transform.Rotate(Vector3.right, rotAmount);
+        }
 
         m_weapons.Turret.Rotate(Vector3.up, m_deltaTurretRotation);
         m_weapons.WeaponSystem.RotateAround(m_weapons.Turret.transform.position, Vector3.up, m_deltaTurretRotation);

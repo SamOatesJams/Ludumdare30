@@ -2014,6 +2014,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 10
   RotationSensitivity: 1
+  LeftCogs:
+  - {fileID: 100038}
+  - {fileID: 100036}
+  - {fileID: 100034}
+  - {fileID: 100030}
+  - {fileID: 100028}
+  - {fileID: 100026}
+  RightsCogs:
+  - {fileID: 100024}
+  - {fileID: 100022}
+  - {fileID: 100020}
+  - {fileID: 100016}
+  - {fileID: 100014}
+  - {fileID: 100012}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
