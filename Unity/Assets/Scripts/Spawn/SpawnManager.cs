@@ -33,11 +33,13 @@ public class SpawnManager : MonoBehaviour {
         {
             m_spawnPoints[spawn.Team].Add(spawn.gameObject);
         }
+
+        Debug.Log("[SpawnManager] Found " + m_spawnPoints[Team.Bad].Count + " Bad spawns and " + m_spawnPoints[Team.Good].Count + " Good Spawns.");
 	}
 	
     public GameObject GetSpawm(Team team)
     {
-        var index = Random.Range(0, m_spawnPoints[team].Count - 1);
+        var index = Random.Range(0, m_spawnPoints[team].Count);
         return m_spawnPoints[team][index];
     }
 }
