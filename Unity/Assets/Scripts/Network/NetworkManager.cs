@@ -47,6 +47,20 @@ public class NetworkManager : MonoBehaviour {
     {
         Debug.Log("OnJoinedRoom()");
         var player = PhotonNetwork.Instantiate("Player", new Vector3(0,0,0), Quaternion.identity, 0);
+        player.name = "LocalPlayer";
+        PhotonNetwork.playerName = "Player-" + (PhotonNetwork.playerList.Length + 1);
+
+        var camera = player.transform.Find("Camera").gameObject;
+        camera.SetActive(true);
+
+        var collider = player.GetComponent<Collider>();
+        collider.enabled = true;
+
+        var body = player.GetComponent<Rigidbody>();
+        body.isKinematic = false;
+
+        var movement = player.GetComponent<PlayerMovement>();
+        movement.enabled = true;
     }
 
     public virtual void OnJoinedLobby()
