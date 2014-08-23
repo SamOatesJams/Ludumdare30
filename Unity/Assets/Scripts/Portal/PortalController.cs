@@ -33,6 +33,12 @@ public class PortalController : MonoBehaviour
         {
             var offset = collider.transform.position - this.transform.position;
             collider.transform.position = this.TargetCamera.transform.position + offset + (this.TargetCamera.transform.forward * 4.0f);
+
+            var network = collider.gameObject.GetComponent<PlayerNetwork>();
+            if (network != null)
+            {
+                network.HasTeleported = true;
+            }
         }
     }
 }

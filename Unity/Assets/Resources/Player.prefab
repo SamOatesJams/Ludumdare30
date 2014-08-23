@@ -10,8 +10,9 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
-  - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400006}
+  - 54: {fileID: 5400000}
   - 65: {fileID: 6500000}
   m_Layer: 0
   m_Name: Player
@@ -2027,9 +2028,9 @@ MonoBehaviour:
   ownerId: 0
   group: 0
   prefixBackup: -1
-  observed: {fileID: 400000}
-  synchronization: 3
-  onSerializeTransformOption: 3
+  observed: {fileID: 11400006}
+  synchronization: 2
+  onSerializeTransformOption: 4
   onSerializeRigidBodyOption: 2
   instantiationId: -1
 --- !u!114 &11400004
@@ -2044,6 +2045,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShootDelay: .100000001
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00f04f1b8f21584493328bbc4f1d1be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
