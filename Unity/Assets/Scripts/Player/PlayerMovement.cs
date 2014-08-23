@@ -26,10 +26,23 @@ public class PlayerMovement : MonoBehaviour
         public float DeltaRotation { get; set; }
     }
 
+    struct Weapons
+    {
+        public Transform Turret { get; set; }
+        public Transform WeaponSystem { get; set; }
+        public Transform WeaponLeft { get; set; }
+        public Transform WeaponRight { get; set; }
+    }
+
     /// <summary>
     /// Player movement variables
     /// </summary>
     private Movement m_movement = default(Movement);
+
+    /// <summary>
+    /// Player weapon variables
+    /// </summary>
+    private Weapons m_weapons = default(Weapons);
 
     /// <summary>
     /// The current rotation of the turret and weapon assembly
@@ -45,6 +58,14 @@ public class PlayerMovement : MonoBehaviour
 	void Start () 
     {
         m_body = this.GetComponent<Rigidbody>();
+
+        Transform robotMesh = this.transform.FindChild("SK_RobotDude");
+        Transform weaponsConatainer = this.transform.FindChild("Weapons");
+
+        m_weapons.Turret = robotMesh.transform.FindChild("SM_Turret");
+        m_weapons.WeaponSystem = robotMesh.transform.FindChild("SM_Guns");
+        m_weapons.WeaponLeft = weaponsConatainer.FindChild("WeaponLeft");
+        m_weapons.WeaponRight = weaponsConatainer.FindChild("WeaponRight");
 	}
 	
 	// Update is called once per frame
@@ -67,20 +88,10 @@ public class PlayerMovement : MonoBehaviour
         var forward = this.transform.forward;
         m_body.AddForce(forward * m_movement.DeltaSpeed * this.Speed);
 
-        Transform robotMesh = this.transform.FindChild("SK_RobotDude");
+        m_weapons.Turret.Rotate(Vector3.up, m_deltaTurretRotation);
+        m_weapons.WeaponSystem.RotateAround(m_weapons.Turret.transform.position, Vector3.up, m_deltaTurretRotation);
 
-        Transform turret = robotMesh.transform.FindChild("SM_Turret");
-        turret.Rotate(Vector3.up, m_deltaTurretRotation);
-
-        Transform weapons = robotMesh.transform.FindChild("SM_Guns");
-        weapons.RotateAround(turret.transform.position, Vector3.up, m_deltaTurretRotation);
-
-        Transform weaponsConatainer = this.transform.FindChild("Weapons");
-
-        Transform weaponLeft = weaponsConatainer.FindChild("WeaponLeft");
-        weaponLeft.RotateAround(turret.transform.position, Vector3.up, m_deltaTurretRotation);
-
-        Transform weaponRight = weaponsConatainer.FindChild("WeaponRight");
-        weaponRight.RotateAround(turret.transform.position, Vector3.up, m_deltaTurretRotation);
+        m_weapons.WeaponLeft.RotateAround(m_weapons.Turret.transform.position, Vector3.up, m_deltaTurretRotation);
+        m_weapons.WeaponRight.RotateAround(m_weapons.Turret.transform.position, Vector3.up, m_deltaTurretRotation);
     }
 }

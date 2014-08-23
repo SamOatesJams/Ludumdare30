@@ -73,11 +73,17 @@ public class PlayerNetwork : MonoBehaviour
             this.transform.position = Vector3.Lerp(m_lastPosition, m_targetPosition, m_lerpTime);
             this.transform.rotation = Quaternion.Lerp(m_lastRotation, m_targetRotation, m_lerpTime);
 
+            PlayerShoot playerShoot = this.GetComponent<PlayerShoot>();
+
             if (HasShot)
             {
-                PlayerShoot playerShoot = this.GetComponent<PlayerShoot>();
                 playerShoot.Shoot(SideShot);
                 HasShot = false;
+            }
+
+            if (playerShoot.Shooting)
+            {
+                playerShoot.CheckAnimation();
             }
         }
     }

@@ -8,14 +8,14 @@ public class PlayerShoot : MonoBehaviour {
     public float ShootDelay = 100;
 
     /// <summary>
+    /// Whether the player is currently shooting or not
+    /// </summary>
+    public bool Shooting { get; set; }
+
+    /// <summary>
     /// The controller for the player
     /// </summary>
     private InputDevice m_controller = null;
-
-    /// <summary>
-    /// Whether the player is currently shooting or not
-    /// </summary>
-    private bool m_shooting = false;
 
     /// <summary>
     /// The time the player last shot their weapon
@@ -35,10 +35,15 @@ public class PlayerShoot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        if (m_shooting && Time.time > m_lastshot + 0.1)
+        CheckAnimation();
+    }
+
+    public void CheckAnimation()
+    {
+        if (Shooting && Time.time > m_lastshot + 0.1)
         {
             SetEmmiting(false);
-            m_shooting = false;
+            Shooting = false;
             m_side = (m_side == 0 ? 1 : 0);
         }
 	}
@@ -61,20 +66,21 @@ public class PlayerShoot : MonoBehaviour {
                 }
 
                 m_lastshot = Time.time;
-                m_shooting = true;
+                Shooting = true;
             }
         }
     }
 
     public void Shoot(int side)
     {
+        SetEmmiting(false);
         m_side = side;
         SetEmmiting(true);
-        m_shooting = true;
+        Shooting = true;
         m_lastshot = Time.time;
     }
 
-    void SetEmmiting(bool emitting)
+    public void SetEmmiting(bool emitting)
     {
         Transform weapons = this.transform.FindChild("Weapons");
         Transform weaponSide = weapons.FindChild("Weapon" + (m_side == 0 ? "Left" : "Right"));
