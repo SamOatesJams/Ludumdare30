@@ -7,10 +7,14 @@ public class NetworkManager : MonoBehaviour {
 
     public GameObject LocalPlayer = null;
 
+    public bool AutoCreateAndJoin = true;
+
+    public static string ActiveRoom = null;
+
 	// Use this for initialization
 	void Start () 
     {
-        PhotonNetwork.autoJoinLobby = false;
+        PhotonNetwork.autoJoinLobby = !this.AutoCreateAndJoin;
 	}
 	
 	// Update is called once per frame
@@ -18,14 +22,18 @@ public class NetworkManager : MonoBehaviour {
     {
         if (!m_isConnectedToLobby && !PhotonNetwork.connected)
         {
-            Debug.Log("Connecting to the Photon Master Server. Calling: PhotonNetwork.ConnectUsingSettings();");
             m_isConnectedToLobby = true;
             PhotonNetwork.ConnectUsingSettings("2." + Application.loadedLevel);
+        }
+
+        if (NetworkManager.ActiveRoom != null && PhotonNetwork.connected && PhotonNetwork.insideLobby && !PhotonNetwork.inRoom)
+        {
+            PhotonNetwork.JoinRoom(NetworkManager.ActiveRoom);
         }
 	}
 
     /// <summary>
-    /// Called when connected to the master serber
+    /// Called when connected to the master server
     /// </summary>
     public virtual void OnConnectedToMaster()
     {
@@ -34,8 +42,11 @@ public class NetworkManager : MonoBehaviour {
             Debug.LogWarning("List of available regions counts " + PhotonNetwork.networkingPeer.AvailableRegions.Count + ". First: " + PhotonNetwork.networkingPeer.AvailableRegions[0] + " \t Current Region: " + PhotonNetwork.networkingPeer.CloudRegion);
         }
 
-        var roomOptions = new RoomOptions() { isOpen = true, isVisible = true, maxPlayers = 10 };
-        PhotonNetwork.JoinOrCreateRoom("RobotsTestv3", roomOptions, TypedLobby.Default);
+        if (this.AutoCreateAndJoin)
+        {
+            var roomOptions = new RoomOptions() { isOpen = true, isVisible = true, maxPlayers = 10 };
+            PhotonNetwork.JoinOrCreateRoom("RobotsTestv3", roomOptions, TypedLobby.Default);
+        }
     }
 
     public virtual void OnFailedToConnectToPhoton(DisconnectCause cause)
@@ -68,6 +79,5 @@ public class NetworkManager : MonoBehaviour {
 
     public virtual void OnJoinedLobby()
     {
-        Debug.Log("OnJoinedLobby().");
     }
 }
