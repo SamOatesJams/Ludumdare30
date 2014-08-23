@@ -1,13 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PortalController : MonoBehaviour {
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public Vector3 ExitLocation;
-
+public class PortalController : MonoBehaviour 
+{
     /// <summary>
     /// 
     /// </summary>
@@ -36,7 +31,7 @@ public class PortalController : MonoBehaviour {
     {
         if (collider.tag == "Player")
         {
-            collider.transform.position = this.ExitLocation;
+            collider.transform.position = this.TargetCamera.transform.position + (this.TargetCamera.transform.forward * 4.0f);
         }
     }
 }
