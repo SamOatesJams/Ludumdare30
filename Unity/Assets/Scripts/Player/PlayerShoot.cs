@@ -51,7 +51,6 @@ public class PlayerShoot : MonoBehaviour {
         {
             if (Time.time > m_lastshot + ShootDelay)
             {
-                Transform weapons = this.transform.FindChild("Weapons");
                 SetEmmiting(true);
 
                 m_lastshot = Time.time;
