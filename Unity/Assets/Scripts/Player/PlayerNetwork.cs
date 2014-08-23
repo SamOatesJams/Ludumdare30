@@ -13,6 +13,7 @@ public class PlayerNetwork : MonoBehaviour
 
     private PhotonView m_photon = null;
     private float m_lerpTime = 0.0f;
+    private bool m_hasData = false;
 
     public bool HasTeleported { get; set; }
 
@@ -53,12 +54,13 @@ public class PlayerNetwork : MonoBehaviour
             }
 
             m_lerpTime = 0.0f;
+            m_hasData = true;
         }
     }
 
     void Update()
     {
-        if (!m_photon.isMine)
+        if (!m_photon.isMine && m_hasData)
         {
             m_lerpTime += Time.deltaTime * 9;
             this.transform.position = Vector3.Lerp(m_lastPosition, m_targetPosition, m_lerpTime);
