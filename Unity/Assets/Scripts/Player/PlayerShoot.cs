@@ -53,10 +53,25 @@ public class PlayerShoot : MonoBehaviour {
             {
                 SetEmmiting(true);
 
+                var network = collider.gameObject.GetComponent<PlayerNetwork>();
+                if (network != null)
+                {
+                    network.HasShot = true;
+                    network.SideShot = m_side;
+                }
+
                 m_lastshot = Time.time;
                 m_shooting = true;
             }
         }
+    }
+
+    public void Shoot(int side)
+    {
+        m_side = side;
+        SetEmmiting(true);
+        m_shooting = true;
+        m_lastshot = Time.time;
     }
 
     void SetEmmiting(bool emitting)

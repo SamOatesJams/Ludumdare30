@@ -16,6 +16,8 @@ public class PlayerNetwork : MonoBehaviour
     private bool m_hasData = false;
 
     public bool HasTeleported { get; set; }
+    public bool HasShot { get; set; }
+    public int SideShot { get; set; }
 
     void Start()
     {
@@ -30,9 +32,12 @@ public class PlayerNetwork : MonoBehaviour
             stream.SendNext(this.transform.position);
             stream.SendNext(this.transform.rotation);
             stream.SendNext(this.HasTeleported);
+            stream.SendNext(this.HasShot);
+            stream.SendNext(this.SideShot == 1);
 
             // Reset flags
             this.HasTeleported = false;
+            this.HasShot = false;
         }   
         else   
         {       
@@ -40,6 +45,8 @@ public class PlayerNetwork : MonoBehaviour
             m_targetPosition = (Vector3)stream.ReceiveNext();
             m_targetRotation = (Quaternion)stream.ReceiveNext();
             var didPortal = (bool)stream.ReceiveNext();
+            HasShot = (bool)stream.ReceiveNext();
+            SideShot = (bool)stream.ReceiveNext() ? 1 : 0;
 
             if (!m_hasPosition || didPortal)
             {
@@ -65,6 +72,13 @@ public class PlayerNetwork : MonoBehaviour
             m_lerpTime += Time.deltaTime * 9;
             this.transform.position = Vector3.Lerp(m_lastPosition, m_targetPosition, m_lerpTime);
             this.transform.rotation = Quaternion.Lerp(m_lastRotation, m_targetRotation, m_lerpTime);
+
+            if (HasShot)
+            {
+                PlayerShoot playerShoot = this.GetComponent<PlayerShoot>();
+                playerShoot.Shoot(SideShot);
+                HasShot = false;
+            }
         }
     }
 }
