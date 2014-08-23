@@ -62,9 +62,8 @@ public class PlayerShoot : MonoBehaviour {
 
                 Debug.Log("Shooting");
                 m_lastshot = Time.time;
+                m_shooting = true;
             }
-
-            m_shooting = true;
         }
     }
 }
