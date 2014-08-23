@@ -2028,6 +2028,8 @@ MonoBehaviour:
   - {fileID: 100016}
   - {fileID: 100014}
   - {fileID: 100012}
+  LeftTread: {fileID: 100032}
+  RightTread: {fileID: 100018}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

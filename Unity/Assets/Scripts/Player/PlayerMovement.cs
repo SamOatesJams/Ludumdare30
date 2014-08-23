@@ -56,6 +56,12 @@ public class PlayerMovement : MonoBehaviour
     public GameObject[] RightsCogs = null;
 
     /// <summary>
+    /// The treads of the robot
+    /// </summary>
+    public GameObject LeftTread = null;
+    public GameObject RightTread = null;
+
+    /// <summary>
     /// 
     /// </summary>
     private Rigidbody m_body = null;
@@ -92,19 +98,7 @@ public class PlayerMovement : MonoBehaviour
         this.transform.Rotate(Vector3.up, m_movement.DeltaRotation);
         m_body.AddForce(this.transform.forward * m_movement.DeltaSpeed * this.Speed);
 
-        bool isTurningLeft = m_movement.DeltaRotation < 0.0f;
-
-        foreach (var cog in this.LeftCogs)
-        {
-            var rotAmount = m_movement.DeltaSpeed + (isTurningLeft ? -m_movement.DeltaRotation : m_movement.DeltaRotation);
-            cog.transform.Rotate(Vector3.right, rotAmount);
-        }
-
-        foreach (var cog in this.RightsCogs)
-        {
-            var rotAmount = m_movement.DeltaSpeed + (isTurningLeft ? m_movement.DeltaRotation : -m_movement.DeltaRotation);
-            cog.transform.Rotate(Vector3.right, rotAmount);
-        }
+        RotateTreads();
 
         m_weapons.Turret.Rotate(Vector3.up, m_deltaTurretRotation);
         m_weapons.WeaponSystem.RotateAround(m_weapons.Turret.transform.position, Vector3.up, m_deltaTurretRotation);
@@ -112,4 +106,46 @@ public class PlayerMovement : MonoBehaviour
         m_weapons.WeaponLeft.RotateAround(m_weapons.Turret.transform.position, Vector3.up, m_deltaTurretRotation);
         m_weapons.WeaponRight.RotateAround(m_weapons.Turret.transform.position, Vector3.up, m_deltaTurretRotation);
     }
+
+    private void RotateTreads()
+    {
+        bool isTurningLeft = m_movement.DeltaRotation < 0.0f;
+
+        foreach (var cog in this.LeftCogs)
+        {
+            var rotAmount = m_movement.DeltaSpeed + (isTurningLeft ? -m_movement.DeltaRotation : m_movement.DeltaRotation);
+            cog.transform.Rotate(Vector3.right, rotAmount * this.Speed);
+
+            var treadOffset = LeftTread.renderer.material.mainTextureOffset;
+            treadOffset = treadOffset - new Vector2((isTurningLeft ? -rotAmount : rotAmount) * 0.005f, 0.0f);
+            if (treadOffset.x >= 1.0f)
+            {
+                treadOffset.x = -1.0f;
+            }
+            else if (treadOffset.x <= -1.0f)
+            {
+                treadOffset.x = 1.0f;
+            }
+            LeftTread.renderer.material.mainTextureOffset = treadOffset;
+        }
+
+        foreach (var cog in this.RightsCogs)
+        {
+            var rotAmount = m_movement.DeltaSpeed + (isTurningLeft ? m_movement.DeltaRotation : -m_movement.DeltaRotation);
+            cog.transform.Rotate(Vector3.right, rotAmount * this.Speed);
+
+            var treadOffset = RightTread.renderer.material.mainTextureOffset;
+            treadOffset = treadOffset - new Vector2((isTurningLeft ? -rotAmount : rotAmount) * 0.005f, 0.0f);
+            if (treadOffset.x >= 1.0f)
+            {
+                treadOffset.x = -1.0f;
+            }
+            else if (treadOffset.x <= -1.0f)
+            {
+                treadOffset.x = 1.0f;
+            }
+            RightTread.renderer.material.mainTextureOffset = treadOffset;
+        }
+    }
+
 }
