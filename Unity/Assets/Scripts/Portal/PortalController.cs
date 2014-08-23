@@ -31,7 +31,8 @@ public class PortalController : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
-            collider.transform.position = this.TargetCamera.transform.position + (this.TargetCamera.transform.forward * 4.0f);
+            var offset = collider.transform.position - this.transform.position;
+            collider.transform.position = this.TargetCamera.transform.position + offset + (this.TargetCamera.transform.forward * 4.0f);
         }
     }
 }
