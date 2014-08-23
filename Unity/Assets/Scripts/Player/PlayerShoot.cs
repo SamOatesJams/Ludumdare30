@@ -82,8 +82,8 @@ public class PlayerShoot : MonoBehaviour {
 
     public void SetEmmiting(bool emitting)
     {
-        Transform weapons = this.transform.FindChild("Weapons");
-        Transform weaponSide = weapons.FindChild("Weapon" + (m_side == 0 ? "Left" : "Right"));
+        Transform turret = this.transform.FindChild("SK_RobotDude/SM_Turret/SM_Guns");
+        Transform weaponSide = turret.FindChild("Weapon" + (m_side == 0 ? "Left" : "Right"));
 
         foreach (Transform child in weaponSide)
         {

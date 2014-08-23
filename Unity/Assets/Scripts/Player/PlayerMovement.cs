@@ -29,9 +29,6 @@ public class PlayerMovement : MonoBehaviour
     public struct Weapons
     {
         public Transform Turret { get; set; }
-        public Transform WeaponSystem { get; set; }
-        public Transform WeaponLeft { get; set; }
-        public Transform WeaponRight { get; set; }
     }
 
     /// <summary>
@@ -71,14 +68,8 @@ public class PlayerMovement : MonoBehaviour
     {
         m_body = this.GetComponent<Rigidbody>();
 
-        Transform robotMesh = this.transform.FindChild("SK_RobotDude");
-        Transform weaponsConatainer = this.transform.FindChild("Weapons");
-
         Weapons weapons = new Weapons();
-        weapons.Turret = robotMesh.transform.FindChild("SM_Turret");
-        weapons.WeaponSystem = robotMesh.transform.FindChild("SM_Guns");
-        weapons.WeaponLeft = weaponsConatainer.FindChild("WeaponLeft");
-        weapons.WeaponRight = weaponsConatainer.FindChild("WeaponRight");
+        weapons.Turret = this.transform.FindChild("SK_RobotDude/SM_Turret");
         this.m_weapons = weapons;
 	}
 	
@@ -103,10 +94,6 @@ public class PlayerMovement : MonoBehaviour
         RotateTreads();
 
         m_weapons.Turret.Rotate(Vector3.up, m_deltaTurretRotation);
-        m_weapons.WeaponSystem.RotateAround(m_weapons.Turret.transform.position, Vector3.up, m_deltaTurretRotation);
-
-        m_weapons.WeaponLeft.RotateAround(m_weapons.Turret.transform.position, Vector3.up, m_deltaTurretRotation);
-        m_weapons.WeaponRight.RotateAround(m_weapons.Turret.transform.position, Vector3.up, m_deltaTurretRotation);
     }
 
     private void RotateTreads()

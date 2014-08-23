@@ -26,8 +26,7 @@ public class PlayerNetwork : MonoBehaviour
     void Start()
     {
         m_photon = this.GetComponent<PhotonView>();
-        Transform mesh = this.transform.FindChild("SK_RobotDude");
-        m_turret = mesh.FindChild("SM_Turret");
+        m_turret = this.transform.FindChild("SK_RobotDude/SM_Turret");
     }
 
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -37,7 +36,7 @@ public class PlayerNetwork : MonoBehaviour
             //We own this player: send the others our data       
             stream.SendNext(this.transform.position);
             stream.SendNext(this.transform.rotation);
-            stream.SendNext(this.m_turret.transform.rotation);
+            stream.SendNext(m_turret.transform.rotation);
             stream.SendNext(this.HasTeleported);
             stream.SendNext(this.HasShot);
             stream.SendNext(this.SideShot == 1);
