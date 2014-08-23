@@ -1,4 +1,4 @@
-[Ll]ibrary/
+\Unity\[Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
 
@@ -11,3 +11,6 @@
 *.userprefs
 *.pidb
 *.booproj
+
+*.v12.suo
+Unity/Library/*
