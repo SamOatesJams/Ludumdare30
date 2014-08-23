@@ -27,9 +27,23 @@ public class PlayerShoot : MonoBehaviour {
     /// </summary>
     private int m_side = 0;
 
+    /// <summary>
+    /// Weapons to shoot from
+    /// </summary>
+    private Transform[] m_weapons;
+
+    /// <summary>
+    /// Target we have hit
+    /// </summary>
+    private Transform m_hit;
+
 	// Use this for initialization
-	void Start () 
+	void Start ()
     {
+        Transform turret = this.transform.FindChild("SK_RobotDude/SM_Turret/SM_Guns");
+        m_weapons = new Transform[2];
+        m_weapons[0] = turret.FindChild("WeaponLeft");
+        m_weapons[1] = turret.FindChild("WeaponRight");
 	}
 	
 	// Update is called once per frame
@@ -40,7 +54,7 @@ public class PlayerShoot : MonoBehaviour {
 
     public void CheckAnimation()
     {
-        if (Shooting && Time.time > m_lastshot + 0.1)
+        if (Shooting && Time.time > m_lastshot + 0.05)
         {
             SetEmmiting(false);
             Shooting = false;
@@ -56,7 +70,6 @@ public class PlayerShoot : MonoBehaviour {
         {
             if (Time.time > m_lastshot + ShootDelay)
             {
-                SetEmmiting(true);
 
                 var network = collider.gameObject.GetComponent<PlayerNetwork>();
                 if (network != null)
@@ -65,10 +78,31 @@ public class PlayerShoot : MonoBehaviour {
                     network.SideShot = m_side;
                 }
 
-                m_lastshot = Time.time;
-                Shooting = true;
+                RaycastHit hitInfo;
+                Ray ray = new Ray(m_weapons[m_side].position, m_weapons[m_side].forward);
+                bool hit = Physics.Raycast(ray, out hitInfo);
+
+                if (hit && hitInfo.transform.tag == "Player")
+                {
+                    Transform explosive = hitInfo.transform.FindChild("Small explosion");
+                    Debug.Log("Hit");
+                    Hit(explosive);
+
+                    if (network != null)
+                    {
+                        network.HasHit = true;
+                    }
+                }
+
+                Shoot(m_side);
             }
         }
+    }
+
+    public void Hit(Transform transform)
+    {
+        transform.GetComponent<ParticleEmitter>().emit = true;
+        m_hit = transform;
     }
 
     public void Shoot(int side)
@@ -76,16 +110,20 @@ public class PlayerShoot : MonoBehaviour {
         SetEmmiting(false);
         m_side = side;
         SetEmmiting(true);
+
         Shooting = true;
         m_lastshot = Time.time;
+
     }
 
     public void SetEmmiting(bool emitting)
     {
-        Transform turret = this.transform.FindChild("SK_RobotDude/SM_Turret/SM_Guns");
-        Transform weaponSide = turret.FindChild("Weapon" + (m_side == 0 ? "Left" : "Right"));
+        if (m_hit != null && !emitting)
+        {
+            m_hit.GetComponent<ParticleEmitter>().emit = false;
+        }
 
-        foreach (Transform child in weaponSide)
+        foreach (Transform child in m_weapons[m_side])
         {
             ParticleEmitter script = child.GetComponent<ParticleEmitter>();
             if (script != null)
@@ -102,5 +140,6 @@ public class PlayerShoot : MonoBehaviour {
                 }
             }
         }
+
     }
 }
