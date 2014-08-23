@@ -33,16 +33,9 @@ public class PlayerShoot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        if (m_shooting && Time.time > m_lastshot + 1)
+        if (m_shooting && Time.time > m_lastshot + 0.1)
         {
-            Debug.Log("Disabling weapon");
-            Transform weapons = this.transform.FindChild("Weapons");
-
-            foreach (Transform child in weapons)
-            {
-                child.gameObject.particleEmitter.emit = false;
-            }
-
+            SetEmmiting(false);
             m_shooting = false;
         }
 	}
@@ -54,15 +47,33 @@ public class PlayerShoot : MonoBehaviour {
             if (Time.time > m_lastshot + ShootDelay)
             {
                 Transform weapons = this.transform.FindChild("Weapons");
+                SetEmmiting(true);
 
-                foreach (Transform child in weapons)
-                {
-                    child.gameObject.particleEmitter.emit = true;
-                }
-
-                Debug.Log("Shooting");
                 m_lastshot = Time.time;
                 m_shooting = true;
+            }
+        }
+    }
+
+    void SetEmmiting(bool emitting)
+    {
+        Transform weapons = this.transform.FindChild("Weapons");
+
+        foreach (Transform child in weapons)
+        {
+            ParticleEmitter script = child.GetComponent<ParticleEmitter>();
+            if (script != null)
+            {
+                script.emit = emitting;
+            }
+
+            foreach (Transform superchild in child.transform)
+            {
+                ParticleEmitter emitter = superchild.GetComponent<ParticleEmitter>();
+                if (emitter != null)
+                {
+                    emitter.emit = emitting;
+                }
             }
         }
     }
