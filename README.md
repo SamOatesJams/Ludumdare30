@@ -12,12 +12,12 @@ For many people, it can be difficult to find or make the time create a game or p
 Theme
 ---------
 
- T.B.A
+ Connected Worlds
 
 Version
 ----
 
-1.0
+ 3 Day Jam - v1.0
 
 Tech
 -----------
