@@ -26,7 +26,7 @@ Theme
  Connected Worlds
 
 Version
-----
+---------
 
  3 Day Jam - v1.0
 
