@@ -87,6 +87,9 @@ public class NetworkManager : MonoBehaviour {
 
         var shoot = player.GetComponent<PlayerShoot>();
         shoot.enabled = true;
+
+        var nameTag = player.transform.FindChild("UI Root (3D)");
+        nameTag.gameObject.SetActive(false);
     }
 
     public virtual void OnJoinedLobby()

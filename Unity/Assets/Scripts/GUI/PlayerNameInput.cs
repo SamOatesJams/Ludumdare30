@@ -40,7 +40,13 @@ public class PlayerNameInput : MonoBehaviour
 
         if (mInput.text != m_defaultText && !string.IsNullOrEmpty(mInput.text) && mInput.text.Trim().Length >= 5)
         {
-            GameOptions.Instance.SetPlayerName(mInput.text);
+            var name = mInput.text;
+            if (name.Length > 10)
+            {
+                name = name.Substring(0, 10);
+                mInput.text = name;
+            }
+            GameOptions.Instance.SetPlayerName(name);
         }
     }
 
