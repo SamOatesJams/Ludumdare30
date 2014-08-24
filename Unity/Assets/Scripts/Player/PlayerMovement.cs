@@ -84,6 +84,16 @@ public class PlayerMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
+        var playerData = this.GetComponent<PlayerData>();
+        if (playerData.IsDead)
+        {
+            m_movement.DeltaSpeed = 0.0f;
+            m_movement.DeltaRotation = 0.0f;
+            m_turretRotation.DeltaX = 0.0f;
+            m_turretRotation.DeltaY = 0.0f;
+            return;
+        }
+
         m_controller = InputManager.ActiveDevice;
 
         if (m_controller.Name == "Keyboard/Mouse")

@@ -73,6 +73,12 @@ public class PlayerShoot : MonoBehaviour {
             return;
         }
 
+        var playerData = this.GetComponent<PlayerData>();
+        if (playerData.IsDead)
+        {
+            return;
+        }
+
         m_controller = InputManager.ActiveDevice;
 
         if (m_controller.RightTrigger.Value > 0.5f)
@@ -134,14 +140,7 @@ public class PlayerShoot : MonoBehaviour {
     private void Kill(Transform player)
     {
         var playerData = player.GetComponent<PlayerData>();
-        playerData.Health = 100.0f;
-
-        var playerNetwork = player.GetComponent<PlayerNetwork>();
-        playerNetwork.HasTeleported = true;
-
-        var spawn = SpawnManager.Instance.GetSpawm(Team.Good); //TODO:SO
-        player.position = spawn.transform.position;
-        player.rotation = spawn.transform.rotation;
+        playerData.Died();
     }
 
     public void Shoot(int side)
