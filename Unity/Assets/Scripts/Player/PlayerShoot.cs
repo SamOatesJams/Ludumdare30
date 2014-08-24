@@ -8,9 +8,14 @@ public class PlayerShoot : MonoBehaviour {
     public float ShootDelay = 100;
 
     /// <summary>
+    /// Whether this player is the local player
+    /// </summary>
+    public bool LocalPlayer = false;
+
+    /// <summary>
     /// Whether the player is currently shooting or not
     /// </summary>
-    public bool Shooting { get; set; }
+    public bool Shooting { get; private set; }
 
     /// <summary>
     /// The controller for the player
@@ -64,6 +69,11 @@ public class PlayerShoot : MonoBehaviour {
 
     void FixedUpdate()
     {
+        if (!this.LocalPlayer)
+        {
+            return;
+        }
+
         m_controller = InputManager.ActiveDevice;
 
         if (m_controller.RightTrigger.Value > 0.5f)
@@ -93,6 +103,13 @@ public class PlayerShoot : MonoBehaviour {
                     if (network != null)
                     {
                         network.HasHit = true;
+                        var photonView = explosive.GetComponent<PhotonView>();
+
+                        if (photonView != null)
+                        {
+                            PhotonPlayer player = photonView.owner;
+                            network.HitPlayer = player.ID;
+                        }
                     }
                 }
             }
