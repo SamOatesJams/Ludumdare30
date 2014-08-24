@@ -54,10 +54,10 @@ public class PlayerShoot : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        Transform turret = this.transform.FindChild("SK_RobotDude/SM_Turret/SM_Guns");
+        Transform turret = this.transform.FindChild("SK_RobotDude/SM_Turret/SM_TurretArm/");
         m_weapons = new Transform[2];
-        m_weapons[0] = turret.FindChild("WeaponLeft");
-        m_weapons[1] = turret.FindChild("WeaponRight");
+        m_weapons[0] = turret.FindChild("SM_L_GUN");
+        m_weapons[1] = turret.FindChild("SM_R_GUN");
 	}
 	
 	// Update is called once per frame
@@ -105,7 +105,7 @@ public class PlayerShoot : MonoBehaviour {
                 Shoot(m_side);
 
                 RaycastHit hitInfo;
-                Ray ray = new Ray(m_weapons[m_side].position, m_weapons[m_side].forward);
+                Ray ray = new Ray(m_weapons[m_side].position + (m_weapons[m_side].forward * 2.0f), m_weapons[m_side].forward);
                 bool hit = Physics.Raycast(ray, out hitInfo);
 
                 if (hit && hitInfo.transform.tag == "Player")

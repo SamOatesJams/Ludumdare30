@@ -32,7 +32,7 @@ public class PlayerNetwork : MonoBehaviour
     {
         m_photon = this.GetComponent<PhotonView>();
         m_turret = this.transform.FindChild("SK_RobotDude/SM_Turret");
-        m_weapons = this.transform.FindChild("SK_RobotDude/SM_Turret/SM_Guns");
+        m_weapons = this.transform.FindChild("SK_RobotDude/SM_Turret/SM_TurretArm");
     }
 
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

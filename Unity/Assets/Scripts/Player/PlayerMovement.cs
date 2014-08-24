@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
         Weapons weapons = new Weapons();
         weapons.Turret = this.transform.FindChild("SK_RobotDude/SM_Turret");
-        weapons.WeaponSystem = this.transform.FindChild("SK_RobotDude/SM_Turret/SM_Guns");
+        weapons.WeaponSystem = this.transform.FindChild("SK_RobotDude/SM_Turret/SM_TurretArm");
         this.m_weapons = weapons;
 	}
 	
