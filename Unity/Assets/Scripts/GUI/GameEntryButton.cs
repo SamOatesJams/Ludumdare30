@@ -27,18 +27,18 @@ public class GameEntryButton : UIButtonSound
 
             if (IsActive)
             {
-                if (GameListManager.ActiveRoom != this)
+                if (GameListManager.Instance.ActiveRoom != this)
                 {
-                    if (GameListManager.ActiveRoom != null)
+                    if (GameListManager.Instance.ActiveRoom != null)
                     {
-                        GameListManager.ActiveRoom.GetComponent<UISlicedSprite>().color = Color.black;
-                    }                    
-                    GameListManager.ActiveRoom = this;
+                        GameListManager.Instance.ActiveRoom.GetComponent<UISlicedSprite>().color = Color.black;
+                    }
+                    GameListManager.Instance.ActiveRoom = this;
                 }                
             }
-            else if (GameListManager.ActiveRoom == this)
+            else if (GameListManager.Instance.ActiveRoom == this)
             {
-                GameListManager.ActiveRoom = null;
+                GameListManager.Instance.ActiveRoom = null;
             }
         } 
     }

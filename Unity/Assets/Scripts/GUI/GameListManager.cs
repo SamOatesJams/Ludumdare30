@@ -7,12 +7,14 @@ public class GameListManager : MonoBehaviour
 
     public GameObject DefaultEntry = null;
 
-    public static GameEntryButton ActiveRoom { get; set; }
+    public static GameListManager Instance { get; private set; }
+
+    public GameEntryButton ActiveRoom { get; set; }
 
 	// Use this for initialization
 	void Start () 
     {
-        GameListManager.ActiveRoom = null;
+        GameListManager.Instance = this;
 	}
 	
 	// Update is called once per frame
@@ -22,14 +24,12 @@ public class GameListManager : MonoBehaviour
         {
             var rooms = PhotonNetwork.GetRoomList();
 
-            Debug.Log("Room Count: " + rooms.Length);
-
             // clear existing room entries
             foreach (Transform child in this.transform)
             {
                 if (child.gameObject.GetActive())
                 {
-                    GameObject.Destroy(child);
+                    GameObject.Destroy(child.gameObject);
                 }
             }
 
@@ -39,6 +39,7 @@ public class GameListManager : MonoBehaviour
             foreach (var room in rooms)
             {
                 var roomEntry = (GameObject)GameObject.Instantiate(this.DefaultEntry);
+                roomEntry.name = "Room-" + room.name;
                 roomEntry.transform.parent = this.transform;
                 roomEntry.transform.localScale = Vector3.one;
                 roomEntry.transform.localPosition = new Vector3(3.0f, yOffset -= 25.0f, 0.0f);
@@ -54,4 +55,12 @@ public class GameListManager : MonoBehaviour
             m_getGameList = false;
         }
 	}
+
+    /// <summary>
+    /// Refresh the games list
+    /// </summary>
+    public void RefreshGameList()
+    {
+        m_getGameList = true;
+    }
 }
