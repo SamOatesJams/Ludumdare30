@@ -11,6 +11,16 @@ public class NetworkManager : MonoBehaviour {
 
     public static string ActiveRoom = null;
 
+    void Awake()
+    {
+        if (GameOptions.Instance == null)
+        {
+            var optionsObject = new GameObject("GameOptions");
+            optionsObject.AddComponent<GameOptions>();
+            GameObject.DontDestroyOnLoad(optionsObject);
+        }
+    }
+
 	// Use this for initialization
 	void Start () 
     {
@@ -45,8 +55,8 @@ public class NetworkManager : MonoBehaviour {
 
         if (this.AutoCreateAndJoin)
         {
-            var roomOptions = new RoomOptions() { isOpen = true, isVisible = true, maxPlayers = 10 };
-            PhotonNetwork.JoinOrCreateRoom("RobotsTestv3", roomOptions, TypedLobby.Default);
+            var roomOptions = new RoomOptions() { isOpen = true, isVisible = false, maxPlayers = 10 };
+            PhotonNetwork.JoinOrCreateRoom("RobotsTestv4", roomOptions, TypedLobby.Default);
         }
     }
 

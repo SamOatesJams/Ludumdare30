@@ -38,6 +38,11 @@ public class GameListManager : MonoBehaviour
             // add room entries
             foreach (var room in rooms)
             {
+                if (!room.visible)
+                {
+                    continue;
+                }
+
                 var roomEntry = (GameObject)GameObject.Instantiate(this.DefaultEntry);
                 roomEntry.name = "Room-" + room.name;
                 roomEntry.transform.parent = this.transform;
