@@ -54,7 +54,7 @@ public class PlayerShoot : MonoBehaviour {
 
     public void CheckAnimation()
     {
-        if (Shooting && Time.time > m_lastshot + 0.05)
+        if (Shooting && Time.time > m_lastshot + 0.1)
         {
             SetEmmiting(false);
             Shooting = false;
@@ -78,6 +78,8 @@ public class PlayerShoot : MonoBehaviour {
                     network.SideShot = m_side;
                 }
 
+                Shoot(m_side);
+
                 RaycastHit hitInfo;
                 Ray ray = new Ray(m_weapons[m_side].position, m_weapons[m_side].forward);
                 bool hit = Physics.Raycast(ray, out hitInfo);
@@ -93,8 +95,6 @@ public class PlayerShoot : MonoBehaviour {
                         network.HasHit = true;
                     }
                 }
-
-                Shoot(m_side);
             }
         }
     }
