@@ -103,6 +103,13 @@ public class PlayerShoot : MonoBehaviour {
                     if (network != null)
                     {
                         network.HasHit = true;
+                        var photonView = explosive.GetComponent<PhotonView>();
+
+                        if (photonView != null)
+                        {
+                            PhotonPlayer player = photonView.owner;
+                            network.HitPlayer = player.ID;
+                        }
                     }
                 }
             }

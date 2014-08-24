@@ -26,7 +26,7 @@ public class PlayerNetwork : MonoBehaviour
     public bool HasShot { get; set; }
     public int SideShot { get; set; }
     public bool HasHit { get; set; }
-    public string HitPlayer { get; set; }
+    public int HitPlayer { get; set; }
 
     void Awake()
     {
@@ -55,6 +55,7 @@ public class PlayerNetwork : MonoBehaviour
             // Reset flags
             this.HasTeleported = false;
             this.HasShot = false;
+            this.HasHit = false;
         }
         else
         {
@@ -63,7 +64,7 @@ public class PlayerNetwork : MonoBehaviour
             m_targetRotation = (Quaternion)stream.ReceiveNext();
             m_targetTurretRotation = (Quaternion)stream.ReceiveNext();
             m_targetWeaponRotation = (Quaternion)stream.ReceiveNext();
-            HitPlayer = (string)stream.ReceiveNext();
+            HitPlayer = (int)stream.ReceiveNext();
             
             int read = (int)stream.ReceiveNext();
             bool[] flags = Flags.Decode(read, 4);
@@ -112,7 +113,7 @@ public class PlayerNetwork : MonoBehaviour
 
             if (HasHit)
             {
-                //Transform hit = ; // This line n3wt. Need to get the player that was hit.
+                //Transform hit = PhotonNetwork.player; // This line n3wt. Need to get the player that was hit.
                 //playerShoot.Hit(hit);
                 HasHit = false;
             }
