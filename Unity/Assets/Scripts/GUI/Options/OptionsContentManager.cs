@@ -12,6 +12,8 @@ public class OptionsContentManager : MonoBehaviour {
 
     void Start()
     {
+        Debug.Log("OptionsContentManager Start");
+
         Volume.sliderValue = GameOptions.Instance.GetVolume();
         Sensitivity.sliderValue = GameOptions.Instance.GetSensitivity();
         Graphics.selection = GameOptions.Instance.GetGraphics();

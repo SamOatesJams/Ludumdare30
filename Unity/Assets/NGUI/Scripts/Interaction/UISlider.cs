@@ -332,11 +332,15 @@ public class UISlider : IgnoreTimeScale
 
 			current = this;
 
-			if (eventReceiver != null && !string.IsNullOrEmpty(functionName) && Application.isPlaying)
-			{
-				eventReceiver.SendMessage(functionName, stepValue, SendMessageOptions.DontRequireReceiver);
-			}
-			if (onValueChange != null) onValueChange(stepValue);
+            if (!force)
+            {
+                if (eventReceiver != null && !string.IsNullOrEmpty(functionName) && Application.isPlaying)
+                {
+                    eventReceiver.SendMessage(functionName, stepValue, SendMessageOptions.DontRequireReceiver);
+                }
+                if (onValueChange != null) onValueChange(stepValue);
+            }
+
 			current = null;
 		}
 	}

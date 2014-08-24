@@ -216,16 +216,16 @@ public class UIPopupList : MonoBehaviour
 	void Start ()
 	{
 		// Automatically choose the first item
-		if (string.IsNullOrEmpty(mSelectedItem))
-		{
-			if (items.Count > 0) selection = items[0];
-		}
-		else
-		{
-			string s = mSelectedItem;
-			mSelectedItem = null;
-			selection = s;
-		}
+        //if (string.IsNullOrEmpty(mSelectedItem))
+        //{
+        //    if (items.Count > 0) selection = items[0];
+        //}
+        //else
+        //{
+        //    string s = mSelectedItem;
+        //    mSelectedItem = null;
+        //    selection = s;
+        //}
 	}
 
 	/// <summary>

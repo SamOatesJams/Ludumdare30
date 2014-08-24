@@ -55,6 +55,8 @@ public class GameOptions : MonoBehaviour
     {
         AudioListener.volume = value;
         PlayerPrefs.SetFloat("Volume", value);
+
+        Debug.Log("Set Volume: " + value);
     }
 
     public void SetSensitivity(float value)
