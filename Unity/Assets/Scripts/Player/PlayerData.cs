@@ -13,6 +13,8 @@ public class PlayerData : MonoBehaviour {
 
     public AudioSource DieAudio = null;
 
+    private bool m_showWinner = false;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -22,6 +24,41 @@ public class PlayerData : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        if (GameOptions.Instance.GetWinner() != null)
+        {
+            if (!m_showWinner)
+            {
+                m_showWinner = true;
+                m_dieTime = Time.time;
+            }
+            else
+            {
+                var photon = GameOptions.Instance.GetWinner().GetComponent<PhotonView>();
+                var healthLabel = this.HealthSlider.gameObject.GetComponentInChildren<UILabel>();
+                if (healthLabel != null)
+                {                    
+                    int endTime = 5 - (int)(Time.time - m_dieTime);
+                    healthLabel.text = photon.owner.name + " Wins!";
+
+                    if (endTime <= 3)
+                    {
+                        healthLabel.text = "Game ends in " + endTime + "...";
+                    }
+                }
+
+                if (Time.time - m_dieTime > 5.0f)
+                {
+                    GameOptions.Instance.SetWinner(null);
+                    photon.owner.SetScore(0);
+
+                    PhotonNetwork.LeaveRoom();
+                    PhotonNetwork.LeaveLobby();
+                    Application.LoadLevel("MainMenu");
+                }
+            }
+            return;
+        }
+
         this.HealthSlider.sliderValue = this.Health / 100.0f;
 
         if (this.IsDead)

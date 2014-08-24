@@ -86,6 +86,11 @@ public class PlayerMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
+        if (GameOptions.Instance.GetWinner() != null)
+        {
+            return;
+        }
+
         var playerData = this.GetComponent<PlayerData>();
         if (playerData.IsDead)
         {

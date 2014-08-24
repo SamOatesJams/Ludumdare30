@@ -13,6 +13,11 @@ public class SpawnManager : MonoBehaviour {
         get { return s_instance; }
     }
 
+    public bool HasNoSpawns()
+    {
+        return m_spawnPoints[Team.Good].Count == 0;
+    }
+
     void Awake()
     {
         if (s_instance == null)

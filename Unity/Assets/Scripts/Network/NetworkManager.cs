@@ -38,8 +38,11 @@ public class NetworkManager : MonoBehaviour {
 
         if (NetworkManager.ActiveRoom != null && PhotonNetwork.connected && PhotonNetwork.insideLobby && !PhotonNetwork.inRoom)
         {
-            var roomOptions = new RoomOptions() { isOpen = true, isVisible = false, maxPlayers = 10 };
-            PhotonNetwork.JoinOrCreateRoom(NetworkManager.ActiveRoom, roomOptions, TypedLobby.Default);
+            var name = NetworkManager.ActiveRoom;
+            NetworkManager.ActiveRoom = null;
+
+            var roomOptions = new RoomOptions() { isOpen = true, isVisible = true, maxPlayers = 10 };
+            PhotonNetwork.JoinOrCreateRoom(name, roomOptions, TypedLobby.Default);
         }
 	}
 
@@ -73,6 +76,11 @@ public class NetworkManager : MonoBehaviour {
 
     public void OnJoinedRoom()
     {
+        if (SpawnManager.Instance.HasNoSpawns())
+        {
+            return;
+        }
+
         //var spawn = SpawnManager.Instance.GetSpawm((Team)Random.Range(0, 2));         TODO:SO
         var spawn = SpawnManager.Instance.GetSpawm(Team.Good); 
         var player = PhotonNetwork.Instantiate("Player", spawn.transform.position, spawn.transform.rotation, 0);

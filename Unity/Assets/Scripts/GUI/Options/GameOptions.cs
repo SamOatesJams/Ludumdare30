@@ -9,6 +9,9 @@ public class GameOptions : MonoBehaviour
 
     public string PlayerName { get; private set; }
 
+
+    private GameObject m_winner = null;
+
     void Awake()
     {
         if (GameOptions.Instance == null)
@@ -21,6 +24,16 @@ public class GameOptions : MonoBehaviour
         {
             this.enabled = false;
         }
+    }
+
+    public void SetWinner(GameObject winner)
+    {
+        m_winner = winner;
+    }
+
+    public GameObject GetWinner()
+    {
+        return m_winner;
     }
 
     private void LoadOptions()

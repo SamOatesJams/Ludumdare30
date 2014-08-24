@@ -2467,7 +2467,7 @@ internal class NetworkingPeer : LoadbalancingPeer, IPhotonPeerListener
     {
         if (go == null)
         {
-            Debug.LogError("Failed to 'network-remove' GameObject because it's null.");
+            //Debug.LogError("Failed to 'network-remove' GameObject because it's null.");
             return;
         }
 

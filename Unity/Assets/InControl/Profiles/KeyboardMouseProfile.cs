@@ -59,6 +59,12 @@ public class KeyboardMouseProfile : UnityInputDeviceProfile
                 Handle = "Shoot",
                 Target = InputControlType.RightTrigger,
                 Source = MouseButton0
+            },
+            new InputControlMapping
+            {
+                Handle = "GameInfo",
+                Target = InputControlType.RightStickButton,
+                Source = KeyCodeButton(KeyCode.Tab)
             }
         };
     }

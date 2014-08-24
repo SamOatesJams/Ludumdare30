@@ -123,6 +123,8 @@ public class PlayerNetwork : MonoBehaviour
                         {
                             playerShoot.Hit(player.transform);
                             this.HasHit = false;
+
+                            m_photon.owner.SetScore(m_photon.owner.GetScore() + 1);
                             break;
                         }
                     }
