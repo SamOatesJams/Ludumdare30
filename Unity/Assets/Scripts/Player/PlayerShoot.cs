@@ -138,10 +138,12 @@ public class PlayerShoot : MonoBehaviour {
         var playerData = player.GetComponent<PlayerData>();
         playerData.Health = 100.0f;
 
+        var playerNetwork = player.GetComponent<PlayerNetwork>();
+        playerNetwork.HasTeleported = true;
+
         var spawn = SpawnManager.Instance.GetSpawm(Team.Good); //TODO:SO
         player.position = spawn.transform.position;
         player.rotation = spawn.transform.rotation;
-
     }
 
     public void Shoot(int side)
