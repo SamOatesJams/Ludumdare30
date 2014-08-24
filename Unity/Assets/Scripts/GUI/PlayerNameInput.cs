@@ -11,16 +11,12 @@ public class PlayerNameInput : MonoBehaviour
     UIInput mInput;
     bool mIgnoreNextEnter = false;
 
-    private static string m_defaultText = null;
-
     /// <summary>
     /// Add some dummy text to the text list.
     /// </summary>
 
     void Start()
     {
-        mInput = GetComponent<UIInput>();
-        m_defaultText = mInput.text;
     }
 
     /// <summary>
@@ -61,7 +57,7 @@ public class PlayerNameInput : MonoBehaviour
 
     public static string GetPlayerName()
     {
-        if (GameOptions.Instance.PlayerName == m_defaultText || string.IsNullOrEmpty(GameOptions.Instance.PlayerName))
+        if (GameOptions.Instance.PlayerName == "Enter your name..." || string.IsNullOrEmpty(GameOptions.Instance.PlayerName))
         {
             return "Player_" + Random.Range(0, 100000);
         }
