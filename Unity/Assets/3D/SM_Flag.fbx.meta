@@ -1,22 +1,20 @@
 fileFormatVersion: 2
-guid: b30682cf15b8ac841a8cb9391d0b22e1
+guid: 76b629338327f0d4aa09d8c4e7ac670e
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: SM_PlatformCurved
-    100004: SM_PlatformCurvedTrim
+    100002: SM_Flag
+    100004: SM_FlagPole
     400000: //RootNode
-    400002: SM_PlatformCurved
-    400004: SM_PlatformCurvedTrim
-    2300000: //RootNode
-    2300002: SM_PlatformCurved
-    2300004: SM_PlatformCurvedTrim
-    3300000: //RootNode
-    3300002: SM_PlatformCurved
-    3300004: SM_PlatformCurvedTrim
-    4300000: SM_PlatformCurved
-    4300002: SM_PlatformCurvedTrim
+    400002: SM_Flag
+    400004: SM_FlagPole
+    2300000: SM_Flag
+    2300002: SM_FlagPole
+    3300000: SM_Flag
+    3300002: SM_FlagPole
+    4300000: SM_Flag
+    4300002: SM_FlagPole
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -55,7 +53,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []

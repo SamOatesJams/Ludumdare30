@@ -4,10 +4,20 @@ ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: SM_Platform_Join
+    100004: SM_Platform_JoinTrim
     400000: //RootNode
+    400002: SM_Platform_Join
+    400004: SM_Platform_JoinTrim
     2300000: //RootNode
+    2300002: SM_Platform_Join
+    2300004: SM_Platform_JoinTrim
     3300000: //RootNode
+    3300002: SM_Platform_Join
+    3300004: SM_Platform_JoinTrim
     4300000: SM_PlatformJoin
+    4300002: SM_Platform_Join
+    4300004: SM_Platform_JoinTrim
     9500000: //RootNode
   materials:
     importMaterials: 1

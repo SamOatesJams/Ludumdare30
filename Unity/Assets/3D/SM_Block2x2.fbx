@@ -11,10 +11,10 @@ FBXHeaderExtension:  {
 		Year: 2014
 		Month: 8
 		Day: 24
-		Hour: 12
-		Minute: 51
-		Second: 56
-		Millisecond: 789
+		Hour: 11
+		Minute: 20
+		Second: 13
+		Millisecond: 828
 	}
 	Creator: "FBX SDK/FBX Plugins version 2013.3"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -30,19 +30,19 @@ FBXHeaderExtension:  {
 			Comment: ""
 		}
 		Properties70:  {
-			P: "DocumentUrl", "KString", "Url", "", "D:\LUDUMDARE\Ludumdare30\Unity\Assets\3D\SM_Block5x5.fbx"
-			P: "SrcDocumentUrl", "KString", "Url", "", "D:\LUDUMDARE\Ludumdare30\Unity\Assets\3D\SM_Block5x5.fbx"
+			P: "DocumentUrl", "KString", "Url", "", "D:\LUDUMDARE\Ludumdare30\Unity\Assets\3D\SM_Block2x2.fbx"
+			P: "SrcDocumentUrl", "KString", "Url", "", "D:\LUDUMDARE\Ludumdare30\Unity\Assets\3D\SM_Block2x2.fbx"
 			P: "Original", "Compound", "", ""
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "Maya"
 			P: "Original|ApplicationVersion", "KString", "", "", "2013"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "24/08/2014 11:51:56.787"
-			P: "Original|FileName", "KString", "", "", "D:/LUDUMDARE/Ludumdare30/Unity/Assets/3D/SM_Block5x5.fbx"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "24/08/2014 10:20:13.827"
+			P: "Original|FileName", "KString", "", "", "D:/LUDUMDARE/Ludumdare30/Unity/Assets/3D/SM_Block2x2.fbx"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "Maya"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2013"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "24/08/2014 11:51:56.787"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "24/08/2014 10:20:13.827"
 		}
 	}
 }
@@ -73,7 +73,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 1261667520, "", "Scene" {
+	Document: 1322632384, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", "Take 001"
@@ -251,15 +251,15 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 1109864976, "Geometry::", "Mesh" {
+	Geometry: 1109699856, "Geometry::", "Mesh" {
 		Vertices: *24 {
-			a: -1500,-2.1316282072803e-013,1400,1500,-2.1316282072803e-013,1400,-1500,2.27373675443232e-013,-1600,1500,3.83693077310454e-013,-1600,-1500,300,1400,1500,300,1400,1500,300,-1600,-1500,300,-1600
+			a: -600.000061035156,-6.11066752753686e-013,600,300,-6.11066752753686e-013,600,-600,-1.70530256582424e-013,-300,299.999969482422,-1.4210854715202e-014,-300,-600.000061035156,300,600,300,300,600,299.999969482422,300,-300,-600,300,-300
 		} 
 		PolygonVertexIndex: *24 {
 			a: 4,5,6,-8,0,2,3,-2,0,1,5,-5,1,3,6,-6,3,2,7,-7,2,0,4,-8
 		} 
 		Edges: *12 {
-			a: 0,1,2,3,4,5,6,7,9,11,13,17
+			a: 7,4,6,5,11,9,0,13,1,17,2,3
 		} 
 		GeometryVersion: 124
 		LayerElementNormal: 0 {
@@ -268,7 +268,7 @@ Objects:  {
 			MappingInformationType: "ByPolygonVertex"
 			ReferenceInformationType: "Direct"
 			Normals: *72 {
-				a: 0,1,0,0,1,0,0,1,0,0,1,0,2.60532379149948e-017,-1,-1.72898734238822e-016,2.60532379149948e-017,-1,-1.72898734238822e-016,2.60532379149948e-017,-1,-1.72898734238822e-016,2.60532379149948e-017,-1,-1.72898734238822e-016,0,0,1,0,0,1,0,0,1,0,0,1,1,0,0,1,0,0,1,0,0,1,0,0,0,0,-1,0,0,-1,0,0,-1,0,0,-1,-1,0,0,-1,0,0,-1,0,0,-1,0,0
+				a: 0,1,-1.59746331718225e-008,0,1,-1.59746331718225e-008,0,1,-1.59746349481793e-008,0,1,-1.59746349481793e-008,8.68441109426112e-017,-1,-5.76329105306147e-016,8.68441175600561e-017,-1,-5.76329158245706e-016,8.68441175600561e-017,-1,-5.76329158245706e-016,8.68441109426112e-017,-1,-5.76329105306147e-016,0,0,1,0,0,1,0,0,1,0,0,1,1,0,-3.39084209599605e-008,1,0,-3.39084209599605e-008,1,0,-3.39084209599605e-008,1,0,-3.39084209599605e-008,0,0,-1,0,0,-1,0,0,-1,0,0,-1,-1,0,-6.7816841919921e-008,-1,0,-6.7816841919921e-008,-1,0,-6.7816841919921e-008,-1,0,-6.7816841919921e-008
 			} 
 		}
 		LayerElementUV: 0 {
@@ -276,11 +276,11 @@ Objects:  {
 			Name: "map1"
 			MappingInformationType: "ByPolygonVertex"
 			ReferenceInformationType: "IndexToDirect"
-			UV: *48 {
-				a: 0.00186778034549207,0.498128801584244,0.00186778034549207,0.00199203030206263,0.498004496097565,0.00199203030206263,0.498004496097565,0.498128801584244,0.935754895210266,0.998008072376251,0.439618200063705,0.998008072376251,0.439618200063705,0.501871287822723,0.935754895210266,0.501871287822723,0.384251922369003,0.998008072376251,0.384251922369003,0.501871347427368,0.433865606784821,0.501871347427368,0.433865606784821,0.998008072376251,0.273519426584244,0.998008072376251,0.273519426584244,0.501871347427368,0.323133111000061,0.501871347427368,0.323133111000061,0.998008072376251,0.378499329090118,0.501871347427368,0.378499329090118,0.998008072376251,0.328885674476624,0.998008072376251,0.328885674476624,0.501871347427368,0.21815313398838,0.998008072376251,0.21815313398838,0.501871347427368,0.267766833305359,0.501871347427368,0.267766833305359,0.998008072376251
+			UV: *24 {
+				a: 0,0,1,0,0,1,1,1,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1
 			} 
 			UVIndex: *24 {
-				a: 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23
+				a: 8,9,10,11,4,7,6,5,0,1,9,8,1,3,10,9,3,2,11,10,2,0,8,11
 			} 
 		}
 		LayerElementSmoothing: 0 {
@@ -321,40 +321,44 @@ Objects:  {
 			}
 		}
 	}
-	Model: 440305216, "Model::SM_Block5x5", "Mesh" {
+	Model: 440297488, "Model::SM_Block2x2", "Mesh" {
 		Version: 232
 		Properties70:  {
+			P: "RotationPivot", "Vector3D", "Vector", "",-1.50000030517577,-1.70530256582423e-015,1.5
+			P: "ScalingOffset", "Vector3D", "Vector", "",148.500030212402,1.688249540166e-013,-148.5
+			P: "ScalingPivot", "Vector3D", "Vector", "",-150.000030517578,-1.70530256582424e-013,150
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A",1.50000030517578,1.70530256582424e-015,-1.5
 			P: "Lcl Scaling", "Lcl Scaling", "", "A",0.01,0.01,0.01
 		}
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 762946192, "Material::MAT_EnvRed", "" {
+	Material: 762947504, "Material::MAT_Env", "" {
 		Version: 102
 		ShadingModel: "phong"
 		MultiLayer: 0
 		Properties70:  {
 			P: "AmbientColor", "Color", "", "A",0,0,0
-			P: "DiffuseColor", "Color", "", "A",1,0,0
+			P: "DiffuseColor", "Color", "", "A",1,1,1
 			P: "DiffuseFactor", "Number", "", "A",0.800000011920929
 			P: "TransparencyFactor", "Number", "", "A",1
 			P: "SpecularColor", "Color", "", "A",0.5,0.5,0.5
-			P: "ShininessExponent", "Number", "", "A",6.31179094314575
+			P: "ShininessExponent", "Number", "", "A",6.31179093816824
 			P: "ReflectionFactor", "Number", "", "A",0.5
 			P: "Emissive", "Vector3D", "Vector", "",0,0,0
 			P: "Ambient", "Vector3D", "Vector", "",0,0,0
-			P: "Diffuse", "Vector3D", "Vector", "",0.800000011920929,0,0
+			P: "Diffuse", "Vector3D", "Vector", "",0.800000011920929,0.800000011920929,0.800000011920929
 			P: "Specular", "Vector3D", "Vector", "",0.5,0.5,0.5
-			P: "Shininess", "double", "Number", "",6.31179094314575
+			P: "Shininess", "double", "Number", "",6.31179093816824
 			P: "Opacity", "double", "Number", "",1
 			P: "Reflectivity", "double", "Number", "",0
 		}
 	}
-	AnimationStack: 1398061600, "AnimStack::Take 001", "" {
+	AnimationStack: 1531123008, "AnimStack::Take 001", "" {
 		Properties70:  {
 			P: "LocalStart", "KTime", "Time", "",1924423250
 			P: "LocalStop", "KTime", "Time", "",46186158000
@@ -362,7 +366,7 @@ Objects:  {
 			P: "ReferenceStop", "KTime", "Time", "",46186158000
 		}
 	}
-	AnimationLayer: 1093202864, "AnimLayer::BaseLayer", "" {
+	AnimationLayer: 1265749856, "AnimLayer::BaseLayer", "" {
 	}
 }
 
@@ -371,17 +375,17 @@ Objects:  {
 
 Connections:  {
 	
-	;Model::SM_Block5x5, Model::RootNode
-	C: "OO",440305216,0
+	;Model::SM_Block2x2, Model::RootNode
+	C: "OO",440297488,0
 	
 	;AnimLayer::BaseLayer, AnimStack::Take 001
-	C: "OO",1093202864,1398061600
+	C: "OO",1265749856,1531123008
 	
-	;Geometry::, Model::SM_Block5x5
-	C: "OO",1109864976,440305216
+	;Geometry::, Model::SM_Block2x2
+	C: "OO",1109699856,440297488
 	
-	;Material::MAT_EnvRed, Model::SM_Block5x5
-	C: "OO",762946192,440305216
+	;Material::MAT_Env, Model::SM_Block2x2
+	C: "OO",762947504,440297488
 }
 ;Takes section
 ;----------------------------------------------------
