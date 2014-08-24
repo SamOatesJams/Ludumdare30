@@ -7,11 +7,14 @@ public class GameOptions : MonoBehaviour
 
     public float Sensitivity { get; private set; }
 
+    public string PlayerName { get; private set; }
+
     void Awake()
     {
         if (GameOptions.Instance == null)
         {
             GameOptions.Instance = this;
+            AudioListener.volume = 0.0f;
             LoadOptions();
         }
         else
@@ -22,9 +25,30 @@ public class GameOptions : MonoBehaviour
 
     private void LoadOptions()
     {
-        SetVolume(PlayerPrefs.GetFloat("Volume", 1.0f));
-        SetSensitivity(PlayerPrefs.GetFloat("Sensitivity", 0.5f));
-        SetGraphics(PlayerPrefs.GetString("Graphics", "good"));
+        SetVolume(GetVolume());
+        SetSensitivity(GetSensitivity());
+        SetGraphics(GetGraphics());
+        SetPlayerName(GetPlayerName());
+    }
+
+    public float GetVolume()
+    {
+        return PlayerPrefs.GetFloat("Volume", 1.0f);
+    }
+
+    public float GetSensitivity()
+    {
+        return PlayerPrefs.GetFloat("Sensitivity", 0.5f);
+    }
+
+    public string GetGraphics()
+    {
+        return PlayerPrefs.GetString("Graphics", "good");
+    }
+
+    public string GetPlayerName()
+    {
+        return PlayerPrefs.GetString("PlayerName", "Enter your name...");
     }
 
     public void SetVolume(float value)
@@ -56,6 +80,12 @@ public class GameOptions : MonoBehaviour
         }
 
         QualitySettings.SetQualityLevel(qIndex);
-        PlayerPrefs.SetString("Graphics", quality.ToLower());
+        PlayerPrefs.SetString("Graphics", quality);
+    }
+
+    public void SetPlayerName(string name)
+    {
+        this.PlayerName = name;
+        PlayerPrefs.SetString("PlayerName", name);
     }
 }

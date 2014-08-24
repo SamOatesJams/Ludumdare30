@@ -70,7 +70,8 @@ public class NetworkManager : MonoBehaviour {
         var spawn = SpawnManager.Instance.GetSpawm((Team)Random.Range(0, 2));                
         var player = PhotonNetwork.Instantiate("Player", spawn.transform.position, spawn.transform.rotation, 0);
         player.name = "LocalPlayer";
-        PhotonNetwork.playerName = "Player-" + (PhotonNetwork.playerList.Length + 1);
+
+        PhotonNetwork.playerName = PlayerNameInput.GetPlayerName();
 
         var camera = player.transform.Find("SK_RobotDude/SM_Turret/Camera").gameObject;
         camera.SetActive(true);
