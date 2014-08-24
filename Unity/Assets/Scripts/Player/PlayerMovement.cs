@@ -86,6 +86,11 @@ public class PlayerMovement : MonoBehaviour
     {
         m_controller = InputManager.ActiveDevice;
 
+        if (m_controller.Name == "Keyboard/Mouse")
+        {
+            Screen.lockCursor = true;
+        }
+
         // Left Thumb move player
         m_movement.DeltaSpeed = m_controller.LeftStickY;
         m_movement.DeltaRotation = m_controller.LeftStickX;

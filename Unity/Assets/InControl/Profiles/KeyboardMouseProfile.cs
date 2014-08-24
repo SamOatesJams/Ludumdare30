@@ -33,6 +33,22 @@ public class KeyboardMouseProfile : UnityInputDeviceProfile
               Handle = "Move X WASD",
               Target = InputControlType.LeftStickX,
               Source = KeyCodeAxis( KeyCode.A, KeyCode.D )
+            },
+            new InputControlMapping
+            {
+                Handle = "Mouse Move X",
+                Target = InputControlType.RightStickX,
+                Source = MouseXAxis,
+                Raw = true,
+                Scale = 0.5f
+            },
+            new InputControlMapping
+            {
+                Handle = "Mouse Move Y",
+                Target = InputControlType.RightStickY,
+                Source = MouseYAxis,
+                Raw = true,
+                Scale = 0.2f
             }
         };
 
