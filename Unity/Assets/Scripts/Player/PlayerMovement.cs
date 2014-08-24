@@ -69,7 +69,9 @@ public class PlayerMovement : MonoBehaviour
     /// 
     /// </summary>
     private Rigidbody m_body = null;
-    
+
+    public AudioSource EngineAudio = null;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -129,6 +131,8 @@ public class PlayerMovement : MonoBehaviour
         {
             m_weapons.WeaponSystem.localRotation = Quaternion.Euler(new Vector3(300f, 0, 0));
         }
+
+        this.EngineAudio.pitch = 0.5f + Mathf.Min(m_body.velocity.magnitude * 0.01f, 2.5f);
     }
 
     private void RotateTreads()

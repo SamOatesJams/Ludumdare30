@@ -4,7 +4,7 @@ using InControl;
 
 public class PlayerShoot : MonoBehaviour {
 
-    public float ShootDelay = 100;
+    public float ShootDelay = 1.0f;
 
     /// <summary>
     /// Whether this player is the local player
@@ -41,6 +41,16 @@ public class PlayerShoot : MonoBehaviour {
     /// </summary>
     private ParticleEmitter m_damageParticles;
 
+    /// <summary>
+    /// The gun shot audio source
+    /// </summary>
+    public AudioSource ShootAudio = null;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public AudioSource HitAudio = null;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -58,7 +68,7 @@ public class PlayerShoot : MonoBehaviour {
 
     public void CheckAnimation()
     {
-        if (Shooting && Time.time > m_lastshot + 0.1)
+        if (Shooting && Time.time - m_lastshot > this.ShootDelay)
         {
             SetEmmiting(false);
             Shooting = false;
@@ -83,9 +93,8 @@ public class PlayerShoot : MonoBehaviour {
 
         if (m_controller.RightTrigger.Value > 0.5f)
         {
-            if (Time.time > m_lastshot + ShootDelay)
+            if (Time.time - m_lastshot > this.ShootDelay)
             {
-
                 var network = collider.gameObject.GetComponent<PlayerNetwork>();
                 if (network != null)
                 {
@@ -125,15 +134,21 @@ public class PlayerShoot : MonoBehaviour {
         m_damageParticles = explosive.GetComponent<ParticleEmitter>();
         m_damageParticles.emit = true;
 
+        var shoot = player.GetComponent<PlayerShoot>();
+        shoot.HitAudio.Play();
+
         var playerData = player.GetComponent<PlayerData>();
-        var newHealth = playerData.Health - (10.0f + Random.Range(0.0f, 10.0f));
-        if (newHealth <= 0.0f)
+        if (!playerData.IsDead)
         {
-            Kill(player);
-        }
-        else
-        {
-            playerData.Health = newHealth;
+            var newHealth = playerData.Health - (10.0f + Random.Range(0.0f, 10.0f));
+            if (newHealth <= 0.0f)
+            {
+                Kill(player);
+            }
+            else
+            {
+                playerData.Health = newHealth;
+            }
         }
     }
 
@@ -148,6 +163,8 @@ public class PlayerShoot : MonoBehaviour {
         SetEmmiting(false);
         m_side = side;
         SetEmmiting(true);
+
+        ShootAudio.Play();
 
         Shooting = true;
         m_lastshot = Time.time;

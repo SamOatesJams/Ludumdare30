@@ -11,6 +11,8 @@ public class PlayerData : MonoBehaviour {
 
     private float m_dieTime = 0.0f;
 
+    public AudioSource DieAudio = null;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -62,6 +64,8 @@ public class PlayerData : MonoBehaviour {
             this.Health = 0.0f;
             this.IsDead = true;
             m_dieTime = Time.time;
+
+            this.DieAudio.Play();
 
             var deadFire = this.transform.FindChild("DeadFire");
             deadFire.gameObject.SetActive(true);
