@@ -11,8 +11,7 @@ public class CreateGameButton : UIButtonSound
             var sprite = this.GetComponent<UISlicedSprite>();
 
             // Create game
-            Application.LoadLevel("NetworkSandbox");
-            NetworkManager.ActiveRoom = ServerNameInput.GameName;
+            NetworkManager.JoinGame(ServerNameInput.GameName);
         }
     }
 }

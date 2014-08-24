@@ -24,6 +24,8 @@ public class SpawnManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        Debug.Log("SpawnManager");
+
         m_spawnPoints = new Dictionary<Team, List<GameObject>>();
         m_spawnPoints[Team.Bad] = new List<GameObject>();
         m_spawnPoints[Team.Good] = new List<GameObject>();

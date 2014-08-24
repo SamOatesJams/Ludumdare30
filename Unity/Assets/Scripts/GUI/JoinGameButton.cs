@@ -11,8 +11,7 @@ public class JoinGameButton : UIButtonSound
             var sprite = this.GetComponent<UISlicedSprite>();
 
             // Join the game here
-            Application.LoadLevel("NetworkSandbox");
-            NetworkManager.ActiveRoom = GameListManager.Instance.ActiveRoom.RoomName;
+            NetworkManager.JoinGame(GameListManager.Instance.ActiveRoom.RoomName);
         }
     }
 }

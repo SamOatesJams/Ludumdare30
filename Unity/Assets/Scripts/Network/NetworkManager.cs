@@ -20,7 +20,7 @@ public class NetworkManager : MonoBehaviour {
             GameObject.DontDestroyOnLoad(optionsObject);
         }
     }
-
+    
 	// Use this for initialization
 	void Start () 
     {
@@ -42,6 +42,12 @@ public class NetworkManager : MonoBehaviour {
             PhotonNetwork.JoinOrCreateRoom(NetworkManager.ActiveRoom, roomOptions, TypedLobby.Default);
         }
 	}
+
+    public static void JoinGame(string gameName)
+    {
+        Application.LoadLevel("Default");
+        NetworkManager.ActiveRoom = gameName;
+    }
 
     /// <summary>
     /// Called when connected to the master server
@@ -67,7 +73,10 @@ public class NetworkManager : MonoBehaviour {
 
     public void OnJoinedRoom()
     {
-        var spawn = SpawnManager.Instance.GetSpawm((Team)Random.Range(0, 2));                
+        Debug.Log("OnJoinedRoom");
+
+        //var spawn = SpawnManager.Instance.GetSpawm((Team)Random.Range(0, 2));         TODO:SO
+        var spawn = SpawnManager.Instance.GetSpawm(Team.Good); 
         var player = PhotonNetwork.Instantiate("Player", spawn.transform.position, spawn.transform.rotation, 0);
         player.name = "LocalPlayer";
 
