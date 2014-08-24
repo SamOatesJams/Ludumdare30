@@ -40,7 +40,7 @@ public class PlayerShoot : MonoBehaviour {
     /// <summary>
     /// Target we have hit
     /// </summary>
-    private Transform m_hit;
+    private ParticleEmitter m_damageParticles;
 
 	// Use this for initialization
 	void Start ()
@@ -96,14 +96,12 @@ public class PlayerShoot : MonoBehaviour {
 
                 if (hit && hitInfo.transform.tag == "Player")
                 {
-                    Transform explosive = hitInfo.transform.FindChild("Small explosion");
-                    Debug.Log("Hit");
-                    Hit(explosive);
+                    Hit(hitInfo.transform);
 
                     if (network != null)
                     {
                         network.HasHit = true;
-                        var photonView = explosive.GetComponent<PhotonView>();
+                        var photonView = hitInfo.transform.GetComponent<PhotonView>();
 
                         if (photonView != null)
                         {
@@ -116,10 +114,11 @@ public class PlayerShoot : MonoBehaviour {
         }
     }
 
-    public void Hit(Transform transform)
+    public void Hit(Transform player)
     {
-        transform.GetComponent<ParticleEmitter>().emit = true;
-        m_hit = transform;
+        Transform explosive = player.FindChild("Small explosion");
+        m_damageParticles = explosive.GetComponent<ParticleEmitter>();
+        m_damageParticles.emit = true;
     }
 
     public void Shoot(int side)
@@ -135,9 +134,9 @@ public class PlayerShoot : MonoBehaviour {
 
     public void SetEmmiting(bool emitting)
     {
-        if (m_hit != null && !emitting)
+        if (m_damageParticles != null && !emitting)
         {
-            m_hit.GetComponent<ParticleEmitter>().emit = false;
+            m_damageParticles.emit = false;
         }
 
         foreach (Transform child in m_weapons[m_side])

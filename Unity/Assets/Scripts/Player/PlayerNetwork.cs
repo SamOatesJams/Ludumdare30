@@ -64,15 +64,15 @@ public class PlayerNetwork : MonoBehaviour
             m_targetRotation = (Quaternion)stream.ReceiveNext();
             m_targetTurretRotation = (Quaternion)stream.ReceiveNext();
             m_targetWeaponRotation = (Quaternion)stream.ReceiveNext();
-            HitPlayer = (int)stream.ReceiveNext();
+            this.HitPlayer = (int)stream.ReceiveNext();
             
             int read = (int)stream.ReceiveNext();
             bool[] flags = Flags.Decode(read, 4);
 
             var didPortal = flags[0];
-            HasShot = flags[1];
-            SideShot = flags[2] ? 1 : 0;
-            HasHit = flags[3];
+            this.HasShot = flags[1];
+            this.SideShot = flags[2] ? 1 : 0;
+            this.HasHit = flags[3];
 
             if (!m_hasPosition || didPortal)
             {
@@ -105,17 +105,28 @@ public class PlayerNetwork : MonoBehaviour
 
             PlayerShoot playerShoot = this.GetComponent<PlayerShoot>();
 
-            if (HasShot)
+            if (this.HasShot)
             {
                 playerShoot.Shoot(SideShot);
                 HasShot = false;
             }
 
-            if (HasHit)
+            if (this.HasHit)
             {
-                //Transform hit = PhotonNetwork.player; // This line n3wt. Need to get the player that was hit.
-                //playerShoot.Hit(hit);
-                HasHit = false;
+                var allPlayers = GameObject.FindGameObjectsWithTag("Player");
+                foreach (var player in allPlayers)
+                {
+                    var photon = player.GetComponent<PhotonView>();
+                    if (photon != null && photon.owner != null)
+                    {
+                        if (photon.owner.ID == this.HitPlayer)
+                        {
+                            playerShoot.Hit(player.transform);
+                            this.HasHit = false;
+                            break;
+                        }
+                    }
+                }
             }
         }
     }
