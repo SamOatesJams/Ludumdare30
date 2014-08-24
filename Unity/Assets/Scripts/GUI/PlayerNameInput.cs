@@ -34,7 +34,7 @@ public class PlayerNameInput : MonoBehaviour
             mIgnoreNextEnter = false;
         }
 
-        if (mInput.text != m_defaultText && !string.IsNullOrEmpty(mInput.text) && mInput.text.Trim().Length >= 5)
+        if (mInput.text != "Enter your name..." && !string.IsNullOrEmpty(mInput.text) && mInput.text.Trim().Length >= 5)
         {
             var name = mInput.text;
             if (name.Length > 10)
