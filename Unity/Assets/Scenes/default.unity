@@ -288,6 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Worlds:
   - World_RED
+  CreateColliders: 0
 --- !u!1 &1242067485
 GameObject:
   m_ObjectHideFlags: 0

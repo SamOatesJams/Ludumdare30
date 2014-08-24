@@ -10,8 +10,6 @@ public class WorldManager : MonoBehaviour {
 	// Use this for initialization
 	void Awake () 
     {
-        Debug.Log("WorldManager");
-
         LoadAllWorlds();
 	}
 	
