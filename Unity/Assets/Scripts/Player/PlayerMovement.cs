@@ -26,9 +26,16 @@ public class PlayerMovement : MonoBehaviour
         public float DeltaRotation { get; set; }
     }
 
+    struct TurretRotation
+    {
+        public float DeltaX { get; set; }
+        public float DeltaY { get; set; }
+    }
+
     public struct Weapons
     {
         public Transform Turret { get; set; }
+        public Transform WeaponSystem { get; set; }
     }
 
     /// <summary>
@@ -37,14 +44,14 @@ public class PlayerMovement : MonoBehaviour
     private Movement m_movement = default(Movement);
 
     /// <summary>
+    /// Player turret rotation variables
+    /// </summary>
+    private TurretRotation m_turretRotation = default(TurretRotation);
+
+    /// <summary>
     /// Player weapon variables
     /// </summary>
     private Weapons m_weapons = default(Weapons);
-
-    /// <summary>
-    /// The current rotation of the turret and weapon assembly
-    /// </summary>
-    private float m_deltaTurretRotation = 0f;
 
     /// <summary>
     /// List of all cos used on the treads
@@ -70,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
         Weapons weapons = new Weapons();
         weapons.Turret = this.transform.FindChild("SK_RobotDude/SM_Turret");
+        weapons.WeaponSystem = this.transform.FindChild("SK_RobotDude/SM_Turret/SM_Guns");
         this.m_weapons = weapons;
 	}
 	
@@ -83,7 +91,8 @@ public class PlayerMovement : MonoBehaviour
         m_movement.DeltaRotation = m_controller.LeftStickX;
 
         // Right Thumb aim turret
-        m_deltaTurretRotation = m_controller.RightStickX * RotationSensitivity;
+        m_turretRotation.DeltaX = m_controller.RightStickX * RotationSensitivity;
+        m_turretRotation.DeltaY = m_controller.RightStickY * RotationSensitivity;
 	}
 
     void FixedUpdate()
@@ -93,7 +102,18 @@ public class PlayerMovement : MonoBehaviour
 
         RotateTreads();
 
-        m_weapons.Turret.Rotate(Vector3.up, m_deltaTurretRotation);
+        m_weapons.Turret.Rotate(Vector3.up, m_turretRotation.DeltaX);
+        m_weapons.WeaponSystem.Rotate(Vector3.left, m_turretRotation.DeltaY);
+
+        Quaternion localRotation = m_weapons.WeaponSystem.localRotation;
+        if (localRotation.eulerAngles.x >= 19f && localRotation.eulerAngles.x <= 180f)
+        {
+            m_weapons.WeaponSystem.localRotation = Quaternion.Euler(new Vector3(19, 0, 0));
+        }
+        if (localRotation.eulerAngles.x <= 300f && localRotation.eulerAngles.x >= 180f)
+        {
+            m_weapons.WeaponSystem.localRotation = Quaternion.Euler(new Vector3(300f, 0, 0));
+        }
     }
 
     private void RotateTreads()
