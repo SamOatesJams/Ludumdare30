@@ -22,6 +22,10 @@ ModelImporter:
     100032: SM_R_WheelSmall3
     100034: SM_RobotBody
     100036: SM_Turret
+    100038: SM_L_GUN
+    100040: SM_PartyHat
+    100042: SM_R_GUN
+    100044: SM_TurretArm
     400000: //RootNode
     400002: polySurface17
     400004: SM_Guns
@@ -41,6 +45,10 @@ ModelImporter:
     400032: SM_R_WheelSmall3
     400034: SM_RobotBody
     400036: SM_Turret
+    400038: SM_L_GUN
+    400040: SM_PartyHat
+    400042: SM_R_GUN
+    400044: SM_TurretArm
     2300000: //RootNode
     2300002: polySurface17
     2300004: SM_Guns
@@ -60,6 +68,10 @@ ModelImporter:
     2300032: SM_R_WheelSmall3
     2300034: SM_RobotBody
     2300036: SM_Turret
+    2300038: SM_L_GUN
+    2300040: SM_PartyHat
+    2300042: SM_R_GUN
+    2300044: SM_TurretArm
     3300000: //RootNode
     3300002: polySurface17
     3300004: SM_Guns
@@ -79,6 +91,10 @@ ModelImporter:
     3300032: SM_R_WheelSmall3
     3300034: SM_RobotBody
     3300036: SM_Turret
+    3300038: SM_L_GUN
+    3300040: SM_PartyHat
+    3300042: SM_R_GUN
+    3300044: SM_TurretArm
     4300000: SK_RobotDude
     4300002: SM_L_Treads
     4300004: SM_L_Cog2
@@ -98,6 +114,10 @@ ModelImporter:
     4300032: SM_Guns
     4300034: polySurface17
     4300036: SM_RobotBody
+    4300038: SM_L_GUN
+    4300040: SM_R_GUN
+    4300042: SM_PartyHat
+    4300044: SM_TurretArm
     9500000: //RootNode
   materials:
     importMaterials: 1
