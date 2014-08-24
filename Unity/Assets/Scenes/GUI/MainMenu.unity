@@ -2844,9 +2844,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortByDepth: 1
   showInPanelTool: 1
-  generateNormals: 0
+  generateNormals: 1
   depthPass: 0
-  widgetsAreStatic: 0
+  widgetsAreStatic: 1
   cullWhileDragging: 0
   worldToLocal:
     e00: 328

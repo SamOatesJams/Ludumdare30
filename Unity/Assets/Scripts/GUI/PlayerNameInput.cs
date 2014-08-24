@@ -17,6 +17,7 @@ public class PlayerNameInput : MonoBehaviour
 
     void Start()
     {
+        mInput = this.GetComponent<UIInput>();
     }
 
     /// <summary>
