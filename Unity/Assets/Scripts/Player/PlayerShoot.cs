@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections;
 using InControl;
 
@@ -119,6 +118,30 @@ public class PlayerShoot : MonoBehaviour {
         Transform explosive = player.FindChild("Small explosion");
         m_damageParticles = explosive.GetComponent<ParticleEmitter>();
         m_damageParticles.emit = true;
+
+        var playerData = player.GetComponent<PlayerData>();
+        var newHealth = playerData.Health - (10.0f + Random.Range(0.0f, 10.0f));
+        if (newHealth <= 0.0f)
+        {
+            Kill(player);
+        }
+        else
+        {
+            playerData.Health = newHealth;
+        }
+
+        Debug.Log(player.GetComponent<PhotonView>().owner.name + " has health: " + playerData.Health);
+    }
+
+    private void Kill(Transform player)
+    {
+        var playerData = player.GetComponent<PlayerData>();
+        playerData.Health = 100.0f;
+
+        var spawn = SpawnManager.Instance.GetSpawm(Team.Good); //TODO:SO
+        player.position = spawn.transform.position;
+        player.rotation = spawn.transform.rotation;
+
     }
 
     public void Shoot(int side)
