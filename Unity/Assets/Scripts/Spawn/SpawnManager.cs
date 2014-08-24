@@ -31,7 +31,10 @@ public class SpawnManager : MonoBehaviour {
         var spawns = GameObject.FindObjectsOfType<SpawnPoint>();
         foreach (var spawn in spawns)
         {
-            m_spawnPoints[spawn.Team].Add(spawn.gameObject);
+            if (spawn.gameObject.activeSelf)
+            {
+                m_spawnPoints[spawn.Team].Add(spawn.gameObject);
+            }
         }
 
         Debug.Log("[SpawnManager] Found " + m_spawnPoints[Team.Bad].Count + " Bad spawns and " + m_spawnPoints[Team.Good].Count + " Good Spawns.");
