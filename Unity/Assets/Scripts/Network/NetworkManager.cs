@@ -56,7 +56,7 @@ public class NetworkManager : MonoBehaviour {
         if (this.AutoCreateAndJoin)
         {
             var roomOptions = new RoomOptions() { isOpen = true, isVisible = false, maxPlayers = 10 };
-            PhotonNetwork.JoinOrCreateRoom("RobotsTestv4", roomOptions, TypedLobby.Default);
+            PhotonNetwork.JoinOrCreateRoom("RobotsTestv5", roomOptions, TypedLobby.Default);
         }
     }
 
@@ -86,7 +86,7 @@ public class NetworkManager : MonoBehaviour {
         movement.enabled = true;
 
         var shoot = player.GetComponent<PlayerShoot>();
-        shoot.enabled = true;
+        shoot.LocalPlayer = true;
     }
 
     public virtual void OnJoinedLobby()
