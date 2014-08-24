@@ -38,7 +38,7 @@ public class NetworkManager : MonoBehaviour {
 
         if (NetworkManager.ActiveRoom != null && PhotonNetwork.connected && PhotonNetwork.insideLobby && !PhotonNetwork.inRoom)
         {
-            var roomOptions = new RoomOptions() { isOpen = true, isVisible = true, maxPlayers = 10 };
+            var roomOptions = new RoomOptions() { isOpen = true, isVisible = false, maxPlayers = 10 };
             PhotonNetwork.JoinOrCreateRoom(NetworkManager.ActiveRoom, roomOptions, TypedLobby.Default);
         }
 	}
