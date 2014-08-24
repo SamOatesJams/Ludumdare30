@@ -80,7 +80,7 @@ public class NetworkManager : MonoBehaviour {
 
         PhotonNetwork.playerName = PlayerNameInput.GetPlayerName();
 
-        var camera = player.transform.Find("SK_RobotDude/SM_Turret/Camera").gameObject;
+        var camera = player.transform.Find("SK_RobotDude/SM_Turret/UI Root (2D)").gameObject;
         camera.SetActive(true);
 
         var collider = player.GetComponent<Collider>();

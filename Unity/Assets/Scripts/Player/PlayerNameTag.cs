@@ -23,7 +23,10 @@ public class PlayerNameTag : MonoBehaviour
         if (!m_setup)
         {
             var photon = this.transform.parent.GetComponent<PhotonView>();
-            Label.text = photon.owner.name;
+            if (photon != null && photon.owner != null)
+            {
+                Label.text = photon.owner.name;
+            }            
             m_setup = true;
         }
 	}

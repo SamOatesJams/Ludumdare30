@@ -129,8 +129,6 @@ public class PlayerShoot : MonoBehaviour {
         {
             playerData.Health = newHealth;
         }
-
-        Debug.Log(player.GetComponent<PhotonView>().owner.name + " has health: " + playerData.Health);
     }
 
     private void Kill(Transform player)
