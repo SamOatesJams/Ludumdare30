@@ -33,6 +33,12 @@ public class PortalController : MonoBehaviour
         Transform parent = collider.transform;
         while (parent != null)
         {
+            if (parent.GetComponent<Camera>() != null)
+            {
+                playerXform = null;
+                break;
+            }
+
             if (parent.tag == "Player")
             {
                 playerXform = parent;
