@@ -62,18 +62,22 @@ public class PlayerShoot : MonoBehaviour {
 
     private List<ActiveBulletHitEffect> m_bulletHitEffects = new List<ActiveBulletHitEffect>();
 
+    private Transform m_turret = null;
+
 	// Use this for initialization
 	void Start ()
     {
-        Transform turret = this.transform.FindChild("SK_RobotDude/SM_Turret/SM_TurretArm/");
+        m_turret = this.transform.FindChild("SK_RobotDude/SM_Turret/SM_TurretArm/");
         m_weapons = new Transform[2];
-        m_weapons[0] = turret.FindChild("SM_L_GUN");
-        m_weapons[1] = turret.FindChild("SM_R_GUN");
+        m_weapons[0] = m_turret.FindChild("SM_L_GUN");
+        m_weapons[1] = m_turret.FindChild("SM_R_GUN");
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
+        Debug.DrawRay(m_turret.position + (m_weapons[m_side].forward * 2.0f), m_weapons[m_side].forward);
+
         CheckAnimation();
     }
 
@@ -137,7 +141,7 @@ public class PlayerShoot : MonoBehaviour {
                 Shoot(m_side);
 
                 RaycastHit hitInfo;
-                Ray ray = new Ray(m_weapons[m_side].position + (m_weapons[m_side].forward * 2.0f), m_weapons[m_side].forward);
+                Ray ray = new Ray(m_turret.position + (m_weapons[m_side].forward * 2.0f), m_weapons[m_side].forward);
                 bool hit = Physics.Raycast(ray, out hitInfo);
 
                 if (hit)
