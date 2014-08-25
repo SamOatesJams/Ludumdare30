@@ -87,6 +87,13 @@ public class PlayerShoot : MonoBehaviour {
         }
 	}
 
+    public void AddBulletHit(Vector3 point)
+    {
+        var bulletHitEmit = (ParticleEmitter)GameObject.Instantiate(this.BulletHitEffect, point, Quaternion.identity);
+        var newHit = new ActiveBulletHitEffect() { Emitter = bulletHitEmit.gameObject, StartTime = Time.time };
+        m_bulletHitEffects.Add(newHit);
+    }
+
     void FixedUpdate()
     {
         var removed = new List<ActiveBulletHitEffect>();
@@ -136,10 +143,10 @@ public class PlayerShoot : MonoBehaviour {
                 if (hit)
                 {
                     var pos = hitInfo.point + (((this.transform.position - hitInfo.point).normalized));
+                    this.AddBulletHit(pos);
 
-                    var bulletHitEmit = (ParticleEmitter)GameObject.Instantiate(this.BulletHitEffect, pos, Quaternion.identity);
-                    var newHit = new ActiveBulletHitEffect() { Emitter = bulletHitEmit.gameObject, StartTime = Time.time };
-                    m_bulletHitEffects.Add(newHit);
+                    network.AddBulletHit = true;
+                    network.BulletHitLocation = pos;
 
                     if (hitInfo.transform.tag == "Player")
                     {

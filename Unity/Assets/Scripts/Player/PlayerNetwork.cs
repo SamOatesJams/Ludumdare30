@@ -27,6 +27,8 @@ public class PlayerNetwork : MonoBehaviour
     public int SideShot { get; set; }
     public bool HasHit { get; set; }
     public int HitPlayer { get; set; }
+    public bool AddBulletHit { get; set; }
+    public Vector3 BulletHitLocation { get; set; }
 
     void Awake()
     {
@@ -49,13 +51,20 @@ public class PlayerNetwork : MonoBehaviour
                 this.HasTeleported,
                 this.HasShot,
                 this.SideShot == 1,
-                this.HasHit
+                this.HasHit,
+                this.AddBulletHit
             }));
+
+            if (this.AddBulletHit)
+            {
+                stream.SendNext(this.BulletHitLocation);                
+            }
 
             // Reset flags
             this.HasTeleported = false;
             this.HasShot = false;
             this.HasHit = false;
+            this.AddBulletHit = false;
         }
         else
         {
@@ -67,12 +76,18 @@ public class PlayerNetwork : MonoBehaviour
             this.HitPlayer = (int)stream.ReceiveNext();
             
             int read = (int)stream.ReceiveNext();
-            bool[] flags = Flags.Decode(read, 4);
+            bool[] flags = Flags.Decode(read, 5);
 
             var didPortal = flags[0];
             this.HasShot = flags[1];
             this.SideShot = flags[2] ? 1 : 0;
             this.HasHit = flags[3];
+            this.AddBulletHit = flags[4];
+
+            if (this.AddBulletHit)
+            {
+                this.BulletHitLocation = (Vector3)stream.ReceiveNext();
+            }
 
             if (!m_hasPosition || didPortal)
             {
@@ -104,6 +119,12 @@ public class PlayerNetwork : MonoBehaviour
             this.m_weapons.transform.rotation = Quaternion.Lerp(m_lastWeaponRotation, m_targetWeaponRotation, m_lerpTime);
 
             PlayerShoot playerShoot = this.GetComponent<PlayerShoot>();
+
+            if (this.AddBulletHit)
+            {
+                playerShoot.AddBulletHit(this.BulletHitLocation);
+                this.AddBulletHit = false;
+            }
 
             if (this.HasShot)
             {
