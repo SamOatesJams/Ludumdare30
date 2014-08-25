@@ -72,6 +72,8 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioSource EngineAudio = null;
 
+    private bool m_onGround = false;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -110,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Left Thumb move player
         m_movement.DeltaSpeed = m_controller.LeftStickY;
-        m_movement.DeltaRotation = m_movement.DeltaSpeed < 0.0f ? -m_controller.LeftStickX : m_controller.LeftStickX;
+        m_movement.DeltaRotation = m_movement.DeltaSpeed < -0.5f ? -m_controller.LeftStickX : m_controller.LeftStickX;
 
         // Right Thumb aim turret
         m_turretRotation.DeltaX = m_controller.RightStickX * RotationSensitivity;
@@ -119,8 +121,12 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        this.transform.Rotate(Vector3.up, m_movement.DeltaRotation);
-        m_body.AddForce(this.transform.forward * m_movement.DeltaSpeed * this.Speed);
+        this.transform.Rotate(Vector3.up, m_onGround ? m_movement.DeltaRotation : (m_movement.DeltaRotation * 0.5f));
+
+        if (m_onGround)
+        {
+            m_body.AddForce(this.transform.forward * m_movement.DeltaSpeed * this.Speed);
+        }        
 
         RotateTreads();
 
@@ -138,6 +144,21 @@ public class PlayerMovement : MonoBehaviour
         }
 
         this.EngineAudio.pitch = 0.5f + Mathf.Min(m_body.velocity.magnitude * 0.01f, 2.5f);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        m_onGround = true;
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        m_onGround = true;
+    }
+
+    void OnCollisionExit(Collision col)
+    {
+        m_onGround = false;
     }
 
     private void RotateTreads()

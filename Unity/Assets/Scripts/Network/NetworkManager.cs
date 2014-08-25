@@ -91,9 +91,6 @@ public class NetworkManager : MonoBehaviour {
         var camera = player.transform.Find("SK_RobotDude/SM_Turret/UI Root (2D)").gameObject;
         camera.SetActive(true);
 
-        var collider = player.GetComponent<Collider>();
-        collider.enabled = true;
-
         var body = player.GetComponent<Rigidbody>();
         body.isKinematic = false;
 

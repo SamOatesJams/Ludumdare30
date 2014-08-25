@@ -127,7 +127,7 @@ public class PlayerShoot : MonoBehaviour {
         {
             if (Time.time - m_lastshot > this.ShootDelay)
             {
-                var network = collider.gameObject.GetComponent<PlayerNetwork>();
+                var network = this.GetComponent<PlayerNetwork>();
                 if (network != null)
                 {
                     network.HasShot = true;
