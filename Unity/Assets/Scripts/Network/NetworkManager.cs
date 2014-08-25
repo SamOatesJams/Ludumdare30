@@ -102,6 +102,9 @@ public class NetworkManager : MonoBehaviour {
 
         var nameTag = player.transform.FindChild("UI Root (3D)");
         nameTag.gameObject.SetActive(false);
+
+        var audioListener = player.GetComponent<AudioListener>();
+        audioListener.enabled = true;
     }
 
     public virtual void OnJoinedLobby()

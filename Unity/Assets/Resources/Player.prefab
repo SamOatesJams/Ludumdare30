@@ -3865,7 +3865,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1
@@ -3996,7 +3996,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Priority: 128
+  Priority: 255
   DopplerLevel: 1
   MinDistance: 4.69999981
   MaxDistance: 500
