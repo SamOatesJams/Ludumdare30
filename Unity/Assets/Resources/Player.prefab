@@ -15,6 +15,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400036}
+  - 81: {fileID: 8100000}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -506,7 +507,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 400058}
   - 20: {fileID: 2000000}
-  - 81: {fileID: 8100000}
   - 114: {fileID: 11400030}
   - 45: {fileID: 4500000}
   m_Layer: 0
@@ -3864,7 +3864,7 @@ AudioListener:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100058}
+  m_GameObject: {fileID: 100000}
   m_Enabled: 1
 --- !u!82 &8200000
 AudioSource:
@@ -3998,7 +3998,7 @@ AudioSource:
   Mute: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 4.69999981
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

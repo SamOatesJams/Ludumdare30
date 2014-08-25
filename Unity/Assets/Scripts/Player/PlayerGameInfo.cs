@@ -28,6 +28,12 @@ public class PlayerGameInfo : MonoBehaviour
         var players = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
         if (GameOptions.Instance.GetWinner() != null)
         {
+            if (!m_active)
+            {
+                m_active = true;
+                ShowMenu(players);
+                this.GameInfoPanel.SetActive(m_active);
+            }            
             return;
         }
 
@@ -37,12 +43,6 @@ public class PlayerGameInfo : MonoBehaviour
             if (photon != null && photon.owner != null && photon.owner.GetScore() >= 25)
             {
                 GameOptions.Instance.SetWinner(p);
-                if (!m_active)
-                {
-                    m_active = true;
-                    ShowMenu(players);
-                }
-
                 return;
             }
         }
