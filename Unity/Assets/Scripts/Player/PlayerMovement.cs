@@ -168,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
             cog.transform.Rotate(Vector3.right, rotAmount * this.Speed);
 
             var treadOffset = RightTread.renderer.material.mainTextureOffset;
-            treadOffset = treadOffset - new Vector2((isTurningLeft ? -rotAmount : rotAmount) * 0.005f, 0.0f);
+            treadOffset = treadOffset - new Vector2((isTurningLeft ? rotAmount : -rotAmount) * 0.005f, 0.0f);
             if (treadOffset.x >= 1.0f)
             {
                 treadOffset.x = -1.0f;
