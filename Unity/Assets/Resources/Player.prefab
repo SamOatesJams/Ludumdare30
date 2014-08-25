@@ -2412,7 +2412,7 @@ EllipsoidParticleEmitter:
   m_GameObject: {fileID: 100062}
   serializedVersion: 2
   m_Enabled: 1
-  m_Emit: 1
+  m_Emit: 0
   minSize: .0500000007
   maxSize: .200000003
   minEnergy: .100000001
@@ -2439,7 +2439,7 @@ EllipsoidParticleEmitter:
   m_GameObject: {fileID: 100064}
   serializedVersion: 2
   m_Enabled: 1
-  m_Emit: 1
+  m_Emit: 0
   minSize: .0500000007
   maxSize: .200000003
   minEnergy: .100000001
