@@ -37,19 +37,27 @@ public class PlayerData : MonoBehaviour {
                 var healthLabel = this.HealthSlider.gameObject.GetComponentInChildren<UILabel>();
                 if (healthLabel != null)
                 {                    
-                    int endTime = 5 - (int)(Time.time - m_dieTime);
+                    int endTime = 10 - (int)(Time.time - m_dieTime);
                     healthLabel.text = photon.owner.name + " Wins!";
 
-                    if (endTime <= 3)
+                    if (endTime <= 5)
                     {
                         healthLabel.text = "Game ends in " + endTime + "...";
                     }
                 }
 
-                if (Time.time - m_dieTime > 5.0f)
+                if (Time.time - m_dieTime > 10.0f)
                 {
                     GameOptions.Instance.SetWinner(null);
-                    photon.owner.SetScore(0);
+                    var players = GameObject.FindGameObjectsWithTag("Player");
+                    foreach (var p in players)
+                    {
+                        var ph = p.GetComponent<PhotonView>();
+                        if (ph != null && ph.owner != null)
+                        {
+                            ph.owner.SetScore(0);
+                        }
+                    }
 
                     PhotonNetwork.LeaveRoom();
                     PhotonNetwork.LeaveLobby();

@@ -33,6 +33,11 @@ static class ScoreExtensions
 
     public static int GetScore(this PhotonPlayer player)
     {
+        if (player == null || player.customProperties == null)
+        {
+            return 0;
+        }
+
         object teamId;
         if (player.customProperties.TryGetValue(PunPlayerScores.PlayerScoreProp, out teamId))
         {
