@@ -3703,6 +3703,7 @@ MonoBehaviour:
   LocalPlayer: 0
   ShootAudio: {fileID: 8200002}
   HitAudio: {fileID: 8200000}
+  BulletHitEffect: {fileID: 1500000, guid: 29f2844e1d89a4ed09e527cd2039d6ea, type: 2}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

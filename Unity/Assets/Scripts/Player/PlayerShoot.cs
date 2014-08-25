@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using InControl;
 
 public class PlayerShoot : MonoBehaviour {
@@ -51,6 +52,16 @@ public class PlayerShoot : MonoBehaviour {
     /// </summary>
     public AudioSource HitAudio = null;
 
+    public ParticleEmitter BulletHitEffect = null;
+
+    class ActiveBulletHitEffect
+    {
+        public GameObject Emitter;
+        public float StartTime;
+    }
+
+    private List<ActiveBulletHitEffect> m_bulletHitEffects = new List<ActiveBulletHitEffect>();
+
 	// Use this for initialization
 	void Start ()
     {
@@ -78,6 +89,20 @@ public class PlayerShoot : MonoBehaviour {
 
     void FixedUpdate()
     {
+        var removed = new List<ActiveBulletHitEffect>();
+        foreach (var bulletHit in m_bulletHitEffects)
+        {
+            if (Time.time - bulletHit.StartTime > 1.0f)
+            {
+                GameObject.Destroy(bulletHit.Emitter);
+                removed.Add(bulletHit);
+            }
+        }
+        foreach (var r in removed)
+        {
+            m_bulletHitEffects.Remove(r);
+        }
+
         if (!this.LocalPlayer)
         {
             return;
@@ -108,19 +133,28 @@ public class PlayerShoot : MonoBehaviour {
                 Ray ray = new Ray(m_weapons[m_side].position + (m_weapons[m_side].forward * 2.0f), m_weapons[m_side].forward);
                 bool hit = Physics.Raycast(ray, out hitInfo);
 
-                if (hit && hitInfo.transform.tag == "Player")
+                if (hit)
                 {
-                    Hit(hitInfo.transform);
+                    var pos = hitInfo.point + (((this.transform.position - hitInfo.point).normalized));
 
-                    if (network != null)
+                    var bulletHitEmit = (ParticleEmitter)GameObject.Instantiate(this.BulletHitEffect, pos, Quaternion.identity);
+                    var newHit = new ActiveBulletHitEffect() { Emitter = bulletHitEmit.gameObject, StartTime = Time.time };
+                    m_bulletHitEffects.Add(newHit);
+
+                    if (hitInfo.transform.tag == "Player")
                     {
-                        network.HasHit = true;
-                        var photonView = hitInfo.transform.GetComponent<PhotonView>();
+                        Hit(hitInfo.transform);
 
-                        if (photonView != null)
+                        if (network != null)
                         {
-                            PhotonPlayer player = photonView.owner;
-                            network.HitPlayer = player.ID;
+                            network.HasHit = true;
+                            var photonView = hitInfo.transform.GetComponent<PhotonView>();
+
+                            if (photonView != null)
+                            {
+                                PhotonPlayer player = photonView.owner;
+                                network.HitPlayer = player.ID;
+                            }
                         }
                     }
                 }
