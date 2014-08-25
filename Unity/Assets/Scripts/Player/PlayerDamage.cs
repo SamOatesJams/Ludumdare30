@@ -61,13 +61,17 @@ public class PlayerDamage : MonoBehaviour {
             }
         }
 
-        if (health >= LowHealthLevel)
+        foreach (var effect in m_lowHealthEffects)
         {
-            foreach (var effect in m_lowHealthEffects)
+            if (health >= LowHealthLevel)
             {
                 effect.emit = true;
                 effect.minEmission = health * ParticleEmissionMultiplier;
                 effect.maxEmission = 25 + (health * ParticleEmissionMultiplier);
+            }
+            else
+            {
+                effect.emit = false;
             }
         }
 	}
