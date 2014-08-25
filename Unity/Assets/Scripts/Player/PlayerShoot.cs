@@ -140,7 +140,7 @@ public class PlayerShoot : MonoBehaviour {
         var playerData = player.GetComponent<PlayerData>();
         if (!playerData.IsDead)
         {
-            var newHealth = playerData.Health - (10.0f + Random.Range(0.0f, 10.0f));
+            var newHealth = playerData.Health - 20.0f;
             if (newHealth <= 0.0f)
             {
                 Kill(player);
