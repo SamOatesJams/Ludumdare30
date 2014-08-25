@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Left Thumb move player
         m_movement.DeltaSpeed = m_controller.LeftStickY;
-        m_movement.DeltaRotation = m_controller.LeftStickX;
+        m_movement.DeltaRotation = m_movement.DeltaSpeed < 0.0f ? -m_controller.LeftStickX : m_controller.LeftStickX;
 
         // Right Thumb aim turret
         m_turretRotation.DeltaX = m_controller.RightStickX * RotationSensitivity;
