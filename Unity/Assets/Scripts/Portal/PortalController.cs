@@ -29,15 +29,35 @@ public class PortalController : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag == "Player")
+        Transform playerXform = null;
+        Transform parent = collider.transform;
+        while (parent != null)
         {
-            var offset = collider.transform.position - this.transform.position;
-            collider.transform.position = this.TargetCamera.transform.position + offset + (this.TargetCamera.transform.forward * 4.0f);
-
-            var network = collider.gameObject.GetComponent<PlayerNetwork>();
-            if (network != null)
+            if (parent.tag == "Player")
             {
-                network.HasTeleported = true;
+                playerXform = parent;
+                break;
+            }
+            parent = parent.parent;
+        }
+        
+        if (playerXform != null)
+        {
+            var data = playerXform.GetComponent<PlayerData>();
+            if (data != null)
+            {
+                if (Time.time - data.LastPortal > 1.0f)
+                {
+                    playerXform.position = this.TargetCamera.transform.position + (this.TargetCamera.transform.forward * 4.0f);
+
+                    var network = playerXform.GetComponent<PlayerNetwork>();
+                    if (network != null)
+                    {
+                        network.HasTeleported = true;
+                    }
+
+                    data.LastPortal = Time.time;
+                }
             }
         }
     }

@@ -20,6 +20,8 @@ public class PlayerData : MonoBehaviour {
 
     private bool m_setSkin = false;
 
+    public float LastPortal { get; set; }
+
 	// Use this for initialization
 	void Start () 
     {
