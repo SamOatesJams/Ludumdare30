@@ -102,6 +102,10 @@ public class PlayerGameInfo : MonoBehaviour
         foreach (var p in orderedPlayers)
         {
             var photon = p.GetComponent<PhotonView>();
+            if (photon == null || photon.owner == null)
+            {
+                continue;
+            }
 
             var player = (GameObject)GameObject.Instantiate(this.PlayerPrefab);
             player.transform.parent = this.PlayerTable.transform;

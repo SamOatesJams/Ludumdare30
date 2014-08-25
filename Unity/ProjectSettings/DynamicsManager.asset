@@ -4,12 +4,12 @@
 PhysicsManager:
   m_ObjectHideFlags: 0
   m_Gravity: {x: 0, y: -9.81000042, z: 0}
-  m_DefaultMaterial: {fileID: 0}
+  m_DefaultMaterial: {fileID: 13400000, guid: d3a7a39f5a2bf1245ac8ce497e788678, type: 2}
   m_BounceThreshold: 2
   m_SleepVelocity: .150000006
   m_SleepAngularVelocity: .140000001
   m_MaxAngularVelocity: 7
-  m_MinPenetrationForPenalty: .00999999978
-  m_SolverIterationCount: 6
+  m_MinPenetrationForPenalty: 9.99999975e-05
+  m_SolverIterationCount: 10
   m_RaycastsHitTriggers: 1
   m_LayerCollisionMatrix: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
