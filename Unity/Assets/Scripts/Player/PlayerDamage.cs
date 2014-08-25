@@ -51,14 +51,11 @@ public class PlayerDamage : MonoBehaviour {
 	void Update () {
         float health = 100 - m_data.Health;
 
-        if (health > 0)
+        foreach (var effect in m_effects)
         {
-            foreach (var effect in m_effects)
-            {
-                effect.emit = true;
-                effect.minEmission = health * ParticleEmissionMultiplier;
-                effect.maxEmission = 25 + (health * ParticleEmissionMultiplier);
-            }
+            effect.emit = true;
+            effect.minEmission = health * ParticleEmissionMultiplier;
+            effect.maxEmission = 25 + (health * ParticleEmissionMultiplier);
         }
 
         foreach (var effect in m_lowHealthEffects)

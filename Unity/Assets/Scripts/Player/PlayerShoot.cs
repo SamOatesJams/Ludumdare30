@@ -151,15 +151,15 @@ public class PlayerShoot : MonoBehaviour {
                     if (hitInfo.transform.tag == "Player")
                     {
                         var playerdata = hitInfo.transform.GetComponent<PlayerData>();
+                        var photonView = hitInfo.transform.GetComponent<PhotonView>();
 
-                        if (!playerdata.IsDead)
+                        if (!playerdata.IsDead && photonView.owner.ID != PhotonNetwork.player.ID)
                         {
                             Hit(hitInfo.transform);
 
                             if (network != null)
                             {
                                 network.HasHit = true;
-                                var photonView = hitInfo.transform.GetComponent<PhotonView>();
 
                                 if (photonView != null)
                                 {
