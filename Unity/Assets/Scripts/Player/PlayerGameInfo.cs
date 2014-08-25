@@ -34,7 +34,7 @@ public class PlayerGameInfo : MonoBehaviour
         foreach (var p in players)
         {
             var photon = p.GetComponent<PhotonView>();
-            if (photon.owner.GetScore() >= 50)
+            if (photon != null && photon.owner != null && photon.owner.GetScore() >= 50)
             {
                 GameOptions.Instance.SetWinner(p);
                 if (!m_active)

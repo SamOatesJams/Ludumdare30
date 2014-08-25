@@ -3729,6 +3729,23 @@ MonoBehaviour:
   Health: 100
   HealthSlider: {fileID: 11400024}
   DieAudio: {fileID: 8200006}
+  Skin:
+  - {fileID: 2100000, guid: 3ca68044b09da6740a22ed25aeac42e8, type: 2}
+  - {fileID: 2100000, guid: 7f22524eab72504478ede7957056c61f, type: 2}
+  - {fileID: 2100000, guid: 41b51b2cc4713d6469609536267c5f6e, type: 2}
+  - {fileID: 2100000, guid: aaf43a6f61c4ba74a9c313d7e0a82052, type: 2}
+  - {fileID: 2100000, guid: f5bb65f08ad03394487ebf43a6a89009, type: 2}
+  - {fileID: 2100000, guid: f2c7634f6e40405409a7702b1c0ee991, type: 2}
+  - {fileID: 2100000, guid: 9f4b0fd0a920b8d4cb368fe83460e0e7, type: 2}
+  - {fileID: 2100000, guid: ba7d5207312778b4b832436e9ce43d76, type: 2}
+  - {fileID: 2100000, guid: 6176b490e6db30b4a9359bf8805974ea, type: 2}
+  - {fileID: 2100000, guid: 4f7ab8bac89253c40860f3f4a4066d5c, type: 2}
+  Skinables:
+  - {fileID: 100006}
+  - {fileID: 100004}
+  - {fileID: 100002}
+  - {fileID: 100020}
+  - {fileID: 100038}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1

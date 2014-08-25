@@ -15,6 +15,11 @@ public class PlayerData : MonoBehaviour {
 
     private bool m_showWinner = false;
 
+    public Material[] Skin = null;
+    public GameObject[] Skinables = null;
+
+    private bool m_setSkin = false;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -24,6 +29,22 @@ public class PlayerData : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        if (!m_setSkin)
+        {
+            var photon = this.GetComponent<PhotonView>();
+            if (photon != null && photon.owner != null)
+            {
+                var skindex = photon.owner.ID % this.Skin.Length;
+                var mat = this.Skin[skindex];
+
+                foreach (var skinable in this.Skinables)
+                {
+                    skinable.renderer.material = mat;
+                }                
+                m_setSkin = true;
+            }
+        }
+
         if (GameOptions.Instance.GetWinner() != null)
         {
             if (!m_showWinner)
